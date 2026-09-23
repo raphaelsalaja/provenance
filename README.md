@@ -70,6 +70,15 @@ pnpm provenance generate provenance.yaml --output-dir generated
 pnpm provenance export provenance.yaml --format prov-jsonld --output provenance.prov.jsonld
 ```
 
+Or validate a repository in GitHub Actions:
+
+```yaml
+- uses: actions/checkout@v6
+- uses: raphaelsalaja/provenance@v0.1.1
+  with:
+    file: provenance.yaml
+```
+
 `generate` creates:
 
 - `REFERENCES.md` — a source catalog.
@@ -129,6 +138,7 @@ spec/         versioned normative specifications
 src/          reference CLI implementation
 test/         behavior tests
 examples/     fictional, product-neutral examples
+action.yml    reusable Provenance Check action
 ```
 
 ## Contributing

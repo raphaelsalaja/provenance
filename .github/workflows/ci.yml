@@ -29,3 +29,8 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
       - run: pnpm check
+
+      - name: Verify the reusable action
+        uses: ./
+        with:
+          file: examples/minimal/provenance.yaml

@@ -1,6 +1,6 @@
 {
   "name": "provenance-specification",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A product-neutral specification and reference CLI for recording research and design provenance.",
   "type": "module",
   "bin": {

@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: If you use the Provenance specification or reference implementation, please cite it using this metadata.
 title: Provenance
 type: software
-version: 0.1.0
+version: 0.1.1
 date-released: 2026-09-24
 authors:
   - family-names: Salaja

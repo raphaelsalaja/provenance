@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { readFileSync } from "node:fs";
 import { writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -8,7 +9,9 @@ import { exportProvJsonLd } from "./export-prov-jsonld.js";
 import { loadDocument } from "./load-document.js";
 import { validateDocument } from "./validate-document.js";
 
-const VERSION = "0.1.0";
+const VERSION = JSON.parse(
+  readFileSync(new URL("../package.json", import.meta.url), "utf8"),
+).version;
 
 const help = `Provenance ${VERSION}
 

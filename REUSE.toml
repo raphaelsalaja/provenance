@@ -6,6 +6,7 @@ path = [
   "pnpm-lock.yaml",
   ".nvmrc",
   ".gitignore",
+  "action.yml",
   "schema/**",
   "src/**",
   "scripts/**",

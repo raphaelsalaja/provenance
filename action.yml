@@ -1,0 +1,36 @@
+name: Provenance Check
+description: Validate a Provenance YAML or JSON document.
+author: Raphael Salaja
+
+inputs:
+  file:
+    description: Path to the Provenance document, relative to the repository root.
+    required: false
+    default: provenance.yaml
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: 24
+
+    - name: Set up pnpm
+      uses: pnpm/action-setup@v6
+      with:
+        version: 11.27.0
+        run_install: false
+
+    - name: Install Provenance
+      shell: bash
+      working-directory: ${{ github.action_path }}
+      run: pnpm install --frozen-lockfile --prod
+
+    - name: Validate provenance document
+      shell: bash
+      run: node "${{ github.action_path }}/src/cli.js" check "${{ inputs.file }}"
+
+branding:
+  icon: check-circle
+  color: blue
