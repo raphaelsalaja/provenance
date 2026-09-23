@@ -1,0 +1,89 @@
+schemaVersion: "0.1"
+project:
+  name: Example Project
+  description: Fictional examples of every normative relationship type.
+  repository: https://example.com/example-project
+sources:
+  - id: example-research-paper
+    type: paper
+    title: Example Research Paper
+    creators:
+      - name: A. Researcher
+    datePublished: "2024"
+    url: https://example.com/research-paper
+    terms:
+      status: verified
+      license: CC-BY-4.0
+  - id: example-design-study
+    type: design
+    title: Example Navigation Study
+    creators:
+      - name: Example Design Cooperative
+    url: https://example.com/navigation-study
+    terms:
+      status: unknown
+      notes: The record documents inspiration only; no assets are redistributed.
+  - id: example-library
+    type: software
+    title: Example Library
+    creators:
+      - name: Example Contributors
+    url: https://example.com/example-library
+    revision: v2.1.0
+    terms:
+      status: verified
+      license: MIT
+  - id: example-icon
+    type: media
+    title: Example Arrow Icon
+    creators:
+      - name: Example Artist
+    url: https://example.com/arrow-icon
+    integrity:
+      algorithm: sha256
+      value: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+    terms:
+      status: verified
+      license: CC-BY-4.0
+relationships:
+  - id: consulted-research
+    source: example-research-paper
+    type: consulted
+    targets:
+      - decisions/retry-policy.md
+    contribution: Supplied background terminology considered during the decision.
+  - id: inspired-navigation
+    source: example-design-study
+    type: inspired
+    targets:
+      - src/navigation.js
+    contribution: Inspired the information hierarchy without copying code or assets.
+    confidence: verified
+  - id: adapted-library-pattern
+    source: example-library
+    type: adapted
+    targets:
+      - src/queue.js
+    contribution: Adapted the documented cancellation pattern to the project's own interfaces.
+    confidence: verified
+  - id: copied-license-header
+    source: example-library
+    type: copied
+    targets:
+      - vendor/example-helper.js
+    contribution: Copied a small helper with its required copyright and license notice.
+    confidence: verified
+  - id: bundled-icon
+    source: example-icon
+    type: bundled
+    targets:
+      - assets/arrow.svg
+    contribution: Bundled the unchanged icon with attribution and license metadata.
+    confidence: verified
+  - id: verified-retry-assumption
+    source: example-research-paper
+    type: verified
+    targets:
+      - test/retry-policy.test.js
+    contribution: Verified the retry model's stated backoff assumption.
+    confidence: verified

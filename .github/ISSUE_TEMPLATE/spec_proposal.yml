@@ -1,0 +1,33 @@
+name: Specification proposal
+description: Propose a normative field, relationship, semantic, or conformance change.
+title: "spec: "
+labels: [specification]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What real interoperability or recordkeeping problem is unsolved?
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Generic example
+      description: Use fictional, product-neutral data.
+      render: yaml
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Describe schema, semantics, validation, and generated output.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Compatibility, privacy, and licensing impact
+    validations:
+      required: true

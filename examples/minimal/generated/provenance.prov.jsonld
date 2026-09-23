@@ -1,0 +1,74 @@
+{
+  "@context": {
+    "prov": "http://www.w3.org/ns/prov#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "provenance": "https://github.com/raphaelsalaja/provenance/blob/main/spec/v0.1.md#"
+  },
+  "@graph": [
+    {
+      "@id": "project:root",
+      "@type": "prov:Entity",
+      "dcterms:title": "Example Project",
+      "prov:atLocation": "https://example.com/example-project"
+    },
+    {
+      "@id": "source:example-architecture-guide",
+      "@type": "prov:Entity",
+      "dcterms:title": "Example Architecture Guide",
+      "provenance:sourceType": "documentation",
+      "prov:atLocation": "https://example.com/architecture-guide"
+    },
+    {
+      "@id": "target:docs%2Farchitecture.md",
+      "@type": "prov:Entity",
+      "dcterms:title": "docs/architecture.md",
+      "prov:wasInfluencedBy": [
+        {
+          "@id": "source:example-architecture-guide"
+        }
+      ],
+      "prov:qualifiedInfluence": [
+        {
+          "@id": "influence:architecture-module-boundary"
+        }
+      ]
+    },
+    {
+      "@id": "target:src%2Fmodule-boundary.js",
+      "@type": "prov:Entity",
+      "dcterms:title": "src/module-boundary.js",
+      "prov:wasInfluencedBy": [
+        {
+          "@id": "source:example-architecture-guide"
+        }
+      ],
+      "prov:qualifiedInfluence": [
+        {
+          "@id": "influence:architecture-module-boundary"
+        }
+      ]
+    },
+    {
+      "@id": "influence:architecture-module-boundary",
+      "@type": "prov:Influence",
+      "prov:entity": {
+        "@id": "source:example-architecture-guide"
+      },
+      "prov:influencer": {
+        "@id": "source:example-architecture-guide"
+      },
+      "provenance:relationshipType": "adapted",
+      "provenance:contribution": "Informed the explicit boundary between domain logic and external adapters.",
+      "provenance:target": [
+        {
+          "@id": "target:docs%2Farchitecture.md"
+        },
+        {
+          "@id": "target:src%2Fmodule-boundary.js"
+        }
+      ],
+      "provenance:confidence": "verified",
+      "prov:generatedAtTime": "2026-09-24"
+    }
+  ]
+}

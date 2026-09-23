@@ -1,0 +1,32 @@
+schemaVersion: "0.1"
+project:
+  name: Example Project
+  description: A fictional project used to demonstrate Provenance.
+  repository: https://example.com/example-project
+  version: 1.0.0
+sources:
+  - id: example-architecture-guide
+    type: documentation
+    title: Example Architecture Guide
+    creators:
+      - name: Example Standards Group
+    datePublished: "2025"
+    dateAccessed: "2026-09-24"
+    url: https://example.com/architecture-guide
+    terms:
+      status: verified
+      license: CC-BY-4.0
+      url: https://example.com/architecture-guide/license
+relationships:
+  - id: architecture-module-boundary
+    source: example-architecture-guide
+    type: adapted
+    targets:
+      - docs/architecture.md
+      - src/module-boundary.js
+    contribution: Informed the explicit boundary between domain logic and external adapters.
+    confidence: verified
+    recordedAt: "2026-09-24"
+    evidence:
+      - type: pull-request
+        locator: https://example.com/example-project/pulls/42

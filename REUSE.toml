@@ -1,0 +1,33 @@
+version = 1
+
+[[annotations]]
+path = [
+  "package.json",
+  "pnpm-lock.yaml",
+  ".nvmrc",
+  ".gitignore",
+  "schema/**",
+  "src/**",
+  "scripts/**",
+  "test/**",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Raphael Salaja"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = [
+  "README.md",
+  "spec/**",
+  "examples/**",
+  "CONTRIBUTING.md",
+  "GOVERNANCE.md",
+  "CODE_OF_CONDUCT.md",
+  "SECURITY.md",
+  "CITATION.cff",
+  "LICENSE",
+  ".github/**",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Raphael Salaja"
+SPDX-License-Identifier = "CC-BY-4.0"
