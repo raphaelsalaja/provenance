@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   title: "Provenance — an influence graph for software",
   description:
     "An open proposal for recording the sources that shape software and the artifacts they influence.",
-  alternates: { canonical: "/" },
+  alternates: { canonical: siteUrl.href },
   openGraph: {
     title: "Provenance",
     description:
       "Record the sources that shape software and the artifacts they influence.",
     type: "website",
-    url: "/",
+    url: siteUrl.href,
   },
 };
 

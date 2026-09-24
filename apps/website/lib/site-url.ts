@@ -1,5 +1,6 @@
-const productionHost = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+const configuredSiteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://raphaelsalaja.com/provenance";
 
 export const siteUrl = new URL(
-  productionHost ? `https://${productionHost}` : "http://localhost:3000",
+  configuredSiteUrl.endsWith("/") ? configuredSiteUrl : `${configuredSiteUrl}/`,
 );
