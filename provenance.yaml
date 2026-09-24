@@ -21,7 +21,7 @@ relationships:
     targets:
       - apps/website/app/page.tsx
       - apps/website/app/globals.css
-    contribution: Inspired the narrow reading measure, compact section index, and generous vertical spacing while retaining an original visual identity.
+    contribution: Inspired the 582px reading measure, body-sized headings, compact metadata, restrained code presentation, and generous vertical spacing while retaining original content and a cobalt identity.
     confidence: verified
     recordedAt: 2026-09-24
-    notes: The implementation uses original content, code, typography, color, and graphics.
+    notes: The implementation uses original content, code, color, and graphics; no Liveline assets or source code were copied.
