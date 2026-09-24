@@ -63,5 +63,5 @@ test("export writes PROV JSON-LD to a requested file", () => {
 
 test("help and version are available without a document", () => {
   assert.match(cli("--help").stdout, /provenance check/);
-  assert.equal(cli("--version").stdout.trim(), "0.1.1");
+  assert.equal(cli("--version").stdout.trim(), "0.1.2");
 });

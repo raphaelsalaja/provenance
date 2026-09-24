@@ -25,11 +25,11 @@ runs:
     - name: Install Provenance
       shell: bash
       working-directory: ${{ github.action_path }}
-      run: pnpm install --frozen-lockfile --prod
+      run: pnpm install --frozen-lockfile --prod --filter provenance-specification
 
     - name: Validate provenance document
       shell: bash
-      run: node "${{ github.action_path }}/src/cli.js" check "${{ inputs.file }}"
+      run: node "${{ github.action_path }}/packages/provenance/src/cli.js" check "${{ inputs.file }}"
 
 branding:
   icon: check-circle

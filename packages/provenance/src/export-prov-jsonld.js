@@ -58,7 +58,8 @@ export function exportProvJsonLd(document) {
     "@context": {
       prov: "http://www.w3.org/ns/prov#",
       dcterms: "http://purl.org/dc/terms/",
-      provenance: "https://github.com/raphaelsalaja/provenance/blob/main/spec/v0.1.md#",
+      provenance:
+        "https://github.com/raphaelsalaja/provenance/blob/main/packages/provenance/spec/v0.1.md#",
     },
     "@graph": [
       {

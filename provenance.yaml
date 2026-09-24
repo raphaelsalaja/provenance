@@ -1,0 +1,27 @@
+schemaVersion: "0.1"
+project:
+  name: Provenance
+  description: An open specification for recording the sources that shape software.
+  repository: https://github.com/raphaelsalaja/provenance
+  version: 0.1.2
+sources:
+  - id: liveline-essay
+    type: design
+    title: Liveline
+    url: https://benji.org/liveline
+    dateAccessed: 2026-09-24
+    terms:
+      status: unknown
+      notes: Usage terms were not verified; no code, text, or assets were copied.
+    notes: Reviewed as a public visual reference for an editorial single-page layout.
+relationships:
+  - id: website-editorial-layout
+    source: liveline-essay
+    type: inspired
+    targets:
+      - apps/website/app/page.tsx
+      - apps/website/app/globals.css
+    contribution: Inspired the narrow reading measure, compact section index, and generous vertical spacing while retaining an original visual identity.
+    confidence: verified
+    recordedAt: 2026-09-24
+    notes: The implementation uses original content, code, typography, color, and graphics.

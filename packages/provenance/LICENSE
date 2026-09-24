@@ -1,0 +1,12 @@
+# Licensing
+
+Provenance uses two licenses:
+
+- Reference implementation code, scripts, tests, and JSON Schema are licensed
+  under the MIT License. See `LICENSES/MIT.txt`.
+- The specification, documentation, examples, community files, and generated
+  example artifacts are licensed under the Creative Commons Attribution 4.0
+  International License. See `LICENSES/CC-BY-4.0.txt`.
+
+`REUSE.toml` is the machine-readable authority for the license applied to each
+tracked path. SPDX identifiers are used throughout.

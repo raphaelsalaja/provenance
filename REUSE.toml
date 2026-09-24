@@ -4,13 +4,17 @@ version = 1
 path = [
   "package.json",
   "pnpm-lock.yaml",
+  "pnpm-workspace.yaml",
+  "turbo.json",
   ".nvmrc",
   ".gitignore",
   "action.yml",
-  "schema/**",
-  "src/**",
-  "scripts/**",
-  "test/**",
+  "apps/website/**",
+  "packages/provenance/package.json",
+  "packages/provenance/schema/**",
+  "packages/provenance/src/**",
+  "packages/provenance/scripts/**",
+  "packages/provenance/test/**",
 ]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2026 Raphael Salaja"
@@ -19,8 +23,10 @@ SPDX-License-Identifier = "MIT"
 [[annotations]]
 path = [
   "README.md",
-  "spec/**",
-  "examples/**",
+  "provenance.yaml",
+  "packages/provenance/README.md",
+  "packages/provenance/spec/**",
+  "packages/provenance/examples/**",
   "CONTRIBUTING.md",
   "GOVERNANCE.md",
   "CODE_OF_CONDUCT.md",

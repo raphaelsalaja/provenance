@@ -1,0 +1,24 @@
+{
+  "name": "@provenance/website",
+  "version": "0.1.2",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "check": "pnpm typecheck",
+    "dev": "next dev",
+    "start": "next start",
+    "typecheck": "next typegen && tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "^16.3.5",
+    "provenance-specification": "workspace:*",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "typescript": "^7.0.2"
+  }
+}
