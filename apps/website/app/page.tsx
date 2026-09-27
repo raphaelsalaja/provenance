@@ -3,6 +3,7 @@ import { LogoMark } from "./logo-mark";
 
 const repository = "https://github.com/raphaelsalaja/provenance";
 const version = provenancePackage.version;
+const assetBasePath = process.env.NODE_ENV === "production" ? "/provenance" : "";
 
 const relationships = [
   ["consulted", "Considered as background without claiming adoption."],
@@ -63,15 +64,14 @@ export default function Home() {
               <span>Provenance</span>
             </h1>
             <p className="intro">
-              Provenance is an influence graph for software. It links each source
-              to the decisions, files, tests, or releases it shaped.
+              Provenance is an influence graph for software. It connects the
+              sources a project draws from to the work they shaped.
             </p>
 
             <p>
-              Dependencies show what a program needs to run. Citations show what
-              to read. Neither records how a source shaped the work: a design study
-              may change navigation, a standard may verify a test expectation, or
-              an implementation pattern may become a module.
+              Dependencies show what a program needs to run. Citations point
+              readers to sources. Provenance fills the gap between them: what
+              changed because a source was considered.
             </p>
           </header>
 
@@ -79,9 +79,9 @@ export default function Home() {
             <hr />
             <h2>A Record of Influence</h2>
             <p>
-              A small, versioned YAML or JSON file lives beside the work. It names
-              retrievable sources and links each source to the decisions, files,
-              tests, or releases it influenced.
+              The graph lives in a small, versioned YAML or JSON file beside the
+              work. Sources remain retrievable, and relationships describe their
+              effect on the project.
             </p>
             <p>
               Provenance v0.1 is a tested proposal. It is not an industry standard.
@@ -113,13 +113,9 @@ export default function Home() {
             </p>
             <p>
               In open source software, I think that history should remain visible.
-              Transparency should cover both the code we publish and the sources
-              that shaped it.
-            </p>
-            <p>
-              I wanted a small record that stays with the project, names the source,
-              and explains what it shaped. Provenance is my attempt to make that
-              record practical.
+              Provenance is my attempt to make that practical: a small record that
+              stays with the project, names each source, and explains what it
+              shaped.
             </p>
           </section>
 
@@ -135,15 +131,35 @@ export default function Home() {
               A source list shows what a project consulted. A relationship records
               how a source entered the work.
             </p>
+            <figure className="attribution-figure">
+              <object
+                className="attribution-graphic"
+                data={`${assetBasePath}/attribution-gap.svg`}
+                type="image/svg+xml"
+                role="img"
+                aria-label="Traditional media carries a citation from a source to publication. In AI-assisted software, a Provenance record preserves the source connection while an unrecorded citation is lost."
+                width={768}
+                height={664}
+                tabIndex={-1}
+              >
+                The attribution diagram could not be displayed.
+              </object>
+              <figcaption className="caption">
+                Citations usually travel with traditional media. AI-assisted work
+                can preserve the influence while dropping the reference. A
+                Provenance relationship makes that path visible again.
+              </figcaption>
+            </figure>
           </section>
 
           <section id="record">
             <hr />
             <h2>One File, Explicit Connections</h2>
             <p>
-              A record names the project and its sources. Each relationship
-              connects one source to stable targets. Unknown authorship, dates, or
-              usage terms stay unknown.
+              The project block identifies the work. Source entries describe each
+              reference. Relationship entries connect those sources to stable
+              targets. Missing authorship, dates, or usage terms remain explicitly
+              unknown.
             </p>
             <CodeBlock label="provenance.yaml">{example}</CodeBlock>
             <p className="caption">

@@ -115,6 +115,24 @@ p {
   line-height: 1.45;
 }
 
+.attribution-figure {
+  width: min(48rem, calc(100vw - 3rem));
+  margin: 1.75rem 0 0 50%;
+  transform: translateX(-50%);
+}
+
+.attribution-graphic {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.attribution-figure figcaption {
+  width: min(calc(var(--measure) - 2rem), calc(100vw - 3rem));
+  margin-inline: auto;
+  text-align: center;
+}
+
 section {
   margin-top: 3.5rem;
   scroll-margin-top: 2rem;
@@ -222,6 +240,10 @@ footer p {
 @media (max-width: 36rem) {
   main {
     padding-inline: 1.5rem;
+  }
+
+  .attribution-figure {
+    width: calc(100vw - 1rem);
   }
 
   .relationships > div,
