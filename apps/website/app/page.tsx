@@ -33,10 +33,21 @@ relationships:
     contribution: Informed the boundary between domain logic
       and external adapters.`;
 
-const actionExample = `- uses: actions/checkout@v6
-- uses: raphaelsalaja/provenance@v${version}
-  with:
-    file: provenance.yaml`;
+const actionExample = `name: Validate provenance
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  provenance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: raphaelsalaja/provenance@v${version}
+        with:
+          file: provenance.yaml`;
 
 function CodeBlock({ children, label }: { children: string; label: string }) {
   return (
@@ -186,18 +197,47 @@ export default function Home() {
           </section>
 
           <section id="adopt">
-            <h2>Try It</h2>
-            <p>
-              A Provenance record is plain YAML. Run the validator from any
-              repository to check that the file follows the schema and that its
-              references line up.
-            </p>
-            <CodeBlock label="From Any Repository">
-              {`pnpm dlx provenance-specification@${version} check provenance.yaml`}
-            </CodeBlock>
-            <p>To keep it checked, add the GitHub Action to another repository.</p>
+            <h2>Getting Started</h2>
+            <ol className="getting-started">
+              <li>
+                <div>
+                  <strong>Create the Record</strong>
+                  <p>
+                    Add <code>provenance.yaml</code> to the root of your repository.
+                    The example above is enough to start.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Describe the Influence</strong>
+                  <p>
+                    Add each source once. Then connect it to the files, decisions,
+                    tests, or releases it shaped.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Keep It Valid</strong>
+                  <p>
+                    Update the record in the same pull request as the work. Add this
+                    workflow to validate every change.
+                  </p>
+                </div>
+              </li>
+            </ol>
             <CodeBlock label=".github/workflows/provenance.yml">
               {actionExample}
+            </CodeBlock>
+            <p className="source-checkout">
+              Working on Provenance itself? Run the workspace validator from this
+              source checkout.
+            </p>
+            <CodeBlock label="From This Source Checkout">
+              {
+                "pnpm --filter provenance-specification provenance check ../../provenance.yaml"
+              }
             </CodeBlock>
           </section>
 

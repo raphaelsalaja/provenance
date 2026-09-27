@@ -233,6 +233,50 @@ pre {
   color: #555;
 }
 
+.getting-started {
+  margin: 1.5rem 0 0;
+  padding: 0;
+  counter-reset: step;
+  list-style: none;
+}
+
+.getting-started li {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  counter-increment: step;
+}
+
+.getting-started li::before {
+  display: grid;
+  width: 1.5rem;
+  height: 1.5rem;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--accent);
+  content: counter(step);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.6875rem;
+  font-weight: 620;
+}
+
+.getting-started strong {
+  display: block;
+  margin-top: 0.1rem;
+  font-weight: 620;
+}
+
+.getting-started p {
+  margin-top: 0.35rem;
+  color: #555;
+}
+
+.source-checkout {
+  margin-top: 2rem;
+}
+
 footer {
   margin-top: 4.5rem;
   padding-top: 1rem;
