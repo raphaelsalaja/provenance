@@ -34,4 +34,4 @@ jobs:
       - name: Verify the reusable action
         uses: ./
         with:
-          file: provenance.yaml
+          file: .provenance/provenance.yaml

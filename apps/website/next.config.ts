@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  basePath: "/provenance",
+  basePath: process.env.NODE_ENV === "production" ? "/provenance" : undefined,
   reactStrictMode: true,
 };
 

@@ -18,7 +18,7 @@
     },
     "generate:examples": {
       "cache": false,
-      "outputs": ["examples/minimal/generated/**"]
+      "outputs": ["examples/minimal/.provenance/output/**"]
     },
     "test": {
       "outputs": []

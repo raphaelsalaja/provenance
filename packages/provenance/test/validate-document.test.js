@@ -4,12 +4,16 @@ import { loadDocument } from "../src/load-document.js";
 import { validateDocument } from "../src/validate-document.js";
 
 test("accepts the minimal example", async () => {
-  const document = await loadDocument("examples/minimal/provenance.yaml");
+  const document = await loadDocument(
+    "examples/minimal/.provenance/provenance.yaml",
+  );
   assert.deepEqual(validateDocument(document), []);
 });
 
 test("accepts every normative relationship type", async () => {
-  const document = await loadDocument("examples/relationships/provenance.yaml");
+  const document = await loadDocument(
+    "examples/relationships/.provenance/provenance.yaml",
+  );
   assert.deepEqual(validateDocument(document), []);
 });
 

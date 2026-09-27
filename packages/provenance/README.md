@@ -11,12 +11,21 @@ shape software and the specific decisions or artifacts they influence.
 Run the CLI directly with pnpm:
 
 ```bash
-pnpm dlx provenance-specification@0.1.2 check provenance.yaml
-pnpm dlx provenance-specification@0.1.2 generate provenance.yaml --output-dir generated
-pnpm dlx provenance-specification@0.1.2 export provenance.yaml --format prov-jsonld --output provenance.prov.jsonld
+npx @web-kits/provenance
+npx @web-kits/provenance check
+npx @web-kits/provenance generate
 ```
 
-A minimal `provenance.yaml` looks like this:
+To install the agent skill without running setup first:
+
+```bash
+npx skills@latest add raphaelsalaja/provenance --skill provenance
+```
+
+The skill runs setup when it first encounters a material source in an
+uninitialized repository.
+
+A minimal `.provenance/provenance.yaml` looks like this:
 
 ```yaml
 schemaVersion: "0.1"
@@ -45,13 +54,13 @@ Or validate a repository in GitHub Actions:
 
 ```yaml
 - uses: actions/checkout@v6
-- uses: raphaelsalaja/provenance@v0.1.2
+- uses: raphaelsalaja/provenance@v0.2.0
   with:
-    file: provenance.yaml
+    file: .provenance/provenance.yaml
 ```
 
 `generate` creates a source catalog, an influence index grouped by affected
-target, and a W3C PROV-compatible JSON-LD graph.
+target, and a W3C PROV-compatible JSON-LD graph in `.provenance/output/`.
 
 ## Relationship vocabulary
 

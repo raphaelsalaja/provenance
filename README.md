@@ -1,62 +1,152 @@
+<img src="apps/website/app/icon.svg" alt="" width="48" height="48">
+
 # Provenance
 
 [![CI](https://github.com/raphaelsalaja/provenance/actions/workflows/ci.yml/badge.svg)](https://github.com/raphaelsalaja/provenance/actions/workflows/ci.yml)
+[![skills.sh](https://skills.sh/b/raphaelsalaja/provenance)](https://skills.sh/raphaelsalaja/provenance/provenance)
 
-Provenance is an open proposal for recording the sources that shape software and
-the specific decisions or artifacts they influence.
+Provenance is an open format for recording the sources that shape software and
+the decisions, files, tests, or releases they influence.
 
-Software projects already have dependency graphs. Provenance adds an influence
-graph for research, documentation, design references, datasets, code, media,
-models, standards, and other source material.
+A dependency graph records what software needs to run. Provenance adds an
+influence graph for research, documentation, designs, datasets, standards,
+code, media, models, and other source material.
 
-> **Status:** v0.1 proposal. The format is usable and tested, but it is not an
-> industry standard. Feedback and independent implementations are welcome.
+> [!NOTE]
+> Provenance v0.1 is a tested proposal, not an industry standard. Feedback and
+> independent implementations are welcome.
 
-## Start here
+## Set up Provenance
 
-- [Read the specification](packages/provenance/spec/v0.1.md)
-- [Inspect the JSON Schema](packages/provenance/schema/provenance.schema.json)
-- [Use the CLI and GitHub Action](packages/provenance/README.md)
-- [See generic examples](packages/provenance/examples)
+Run one command from the root of your repository:
 
-Validate a repository with the reusable Action:
+```bash
+npx @web-kits/provenance
+```
+
+The setup creates `.provenance/`, installs instructions for supported coding
+agents, adds the validation workflow, and checks the result.
+
+To add only the agent skill, run:
+
+```bash
+npx skills@latest add raphaelsalaja/provenance --skill provenance
+```
+
+The skill initializes Provenance the first time that a material source affects
+the work.
+
+## What a record contains
+
+The `.provenance/` folder lives beside the work. Its `provenance.yaml` file
+contains:
+
+- retrievable sources with known authorship, dates, revisions, and terms;
+- explicit relationships such as `consulted`, `inspired`, or `verified`;
+- stable targets such as repository paths, decisions, tests, and releases;
+- a short account of what each source contributed.
+
+Unknown information stays unknown. A citation records influence but does not
+grant permission to copy, adapt, or redistribute a source.
+
+```yaml
+schemaVersion: "0.1"
+project:
+  name: Example Project
+sources:
+  - id: architecture-guide
+    type: documentation
+    title: Example Architecture Guide
+    url: https://example.com/architecture-guide
+    terms:
+      status: unknown
+relationships:
+  - id: module-boundary
+    source: architecture-guide
+    type: adapted
+    targets:
+      - docs/architecture.md
+    contribution: Informed the boundary between domain logic and external adapters.
+```
+
+## Validate a record
+
+Setup adds Provenance Check to a GitHub Actions workflow:
 
 ```yaml
 - uses: actions/checkout@v6
-- uses: raphaelsalaja/provenance@v0.1.2
+- uses: raphaelsalaja/provenance@v0.2.0
   with:
-    file: provenance.yaml
+    file: .provenance/provenance.yaml
 ```
 
-Or use the CLI without installing it globally:
-
-```bash
-pnpm dlx provenance-specification@0.1.2 check provenance.yaml
-```
-
-## Repository
-
-This is a pnpm and Turborepo monorepo:
-
-```text
-apps/website/               Provenance website
-packages/provenance/        specification, schema, CLI, tests, and examples
-action.yml                  reusable Provenance Check action
-provenance.yaml             this repository's own influence record
-```
-
-Use Node.js 24 and pnpm 11.27.0:
+To run the CLI from this repository:
 
 ```bash
 pnpm install
-pnpm check
-pnpm build
-pnpm dev
+node packages/provenance/src/cli.js check
 ```
 
-## Contributing and licensing
+The CLI is available as
+[`@web-kits/provenance`](https://www.npmjs.com/package/@web-kits/provenance).
+Release notes are available in the
+[v0.2.0 GitHub release](https://github.com/raphaelsalaja/provenance/releases/tag/v0.2.0).
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md) and [GOVERNANCE.md](GOVERNANCE.md).
-Reference implementation code and the JSON Schema are MIT licensed. The
-specification, documentation, and examples are licensed under CC BY 4.0. See
-[LICENSE](LICENSE) and [LICENSES](LICENSES).
+## Generate public views
+
+Generate the source catalog, influence index, and W3C PROV JSON-LD export:
+
+```bash
+node packages/provenance/src/cli.js generate
+```
+
+The command writes:
+
+```text
+.provenance/
+├── provenance.yaml
+└── output/
+    ├── REFERENCES.md
+    ├── INFLUENCES.md
+    └── provenance.prov.jsonld
+```
+
+## Relationship vocabulary
+
+| Type | Meaning |
+| --- | --- |
+| `consulted` | Considered as background without claiming adoption. |
+| `inspired` | Affected direction without copying code, text, or assets. |
+| `adapted` | Transformed a source pattern or material for the target. |
+| `copied` | Reproduced source material substantially or verbatim. |
+| `bundled` | Distributed the source material with the project. |
+| `verified` | Supplied evidence for a claim, behavior, or test expectation. |
+
+The [v0.1 specification](packages/provenance/spec/v0.1.md) defines the
+relationship semantics and conformance levels. The
+[JSON Schema](packages/provenance/schema/provenance.schema.json) defines the
+machine-readable structure.
+
+## How Provenance fits
+
+Provenance has one job: record how sources influenced software. It complements:
+
+- [CITATION.cff](https://citation-file-format.github.io/) for citing the project;
+- [REUSE](https://reuse.software/spec/) and
+  [SPDX](https://spdx.dev/use/specifications/) for licensing and composition;
+- [W3C PROV](https://www.w3.org/TR/prov-overview/) for general provenance data;
+- build attestations for release production and verification.
+
+## Repository map
+
+```text
+apps/website/               public website
+packages/provenance/        specification, schema, CLI, tests, and examples
+skills/provenance/           public agent skill
+action.yml                  reusable Provenance Check action
+.provenance/                source record and generated output
+```
+
+Use Node.js 24 and pnpm 11.27.0. Run `pnpm check`, `pnpm test`, and
+`pnpm build` before opening a change. See [CONTRIBUTING.md](CONTRIBUTING.md)
+and [GOVERNANCE.md](GOVERNANCE.md) for project policy.

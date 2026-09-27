@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { extname, resolve } from "node:path";
 import { parse as parseYaml } from "yaml";
 
-export async function loadDocument(file = "provenance.yaml") {
+export async function loadDocument(file = ".provenance/provenance.yaml") {
   const path = resolve(file);
   const source = await readFile(path, "utf8");
 

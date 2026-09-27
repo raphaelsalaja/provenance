@@ -23,10 +23,11 @@ SPDX-License-Identifier = "MIT"
 [[annotations]]
 path = [
   "README.md",
-  "provenance.yaml",
+  ".provenance/**",
   "packages/provenance/README.md",
   "packages/provenance/spec/**",
   "packages/provenance/examples/**",
+  "skills/**",
   "CONTRIBUTING.md",
   "GOVERNANCE.md",
   "CODE_OF_CONDUCT.md",
@@ -38,3 +39,15 @@ path = [
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2026 Raphael Salaja"
 SPDX-License-Identifier = "CC-BY-4.0"
+
+[[annotations]]
+path = ".agents/skills/technical-writing/SKILL.md"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Lauren Tan"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = ".agents/skills/create-readme/SKILL.md"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "GitHub, Inc."
+SPDX-License-Identifier = "MIT"

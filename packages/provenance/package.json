@@ -1,6 +1,6 @@
 {
-  "name": "provenance-specification",
-  "version": "0.1.2",
+  "name": "@web-kits/provenance",
+  "version": "0.2.0",
   "description": "A product-neutral specification and reference CLI for recording research and design provenance.",
   "type": "module",
   "bin": {
@@ -12,15 +12,18 @@
     "schema",
     "spec",
     "src",
+    "templates",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
     "provenance": "node src/cli.js",
-    "check": "node --test && node src/cli.js check examples/minimal/provenance.yaml && node src/cli.js check examples/relationships/provenance.yaml && pnpm generate:check",
+    "check": "pnpm sync:skill:check && node --test && node src/cli.js check examples/minimal/.provenance/provenance.yaml && node src/cli.js check examples/relationships/.provenance/provenance.yaml && pnpm generate:check",
     "test": "node --test",
     "generate:examples": "node scripts/generate-examples.js",
-    "generate:check": "node scripts/check-generated.js"
+    "generate:check": "node scripts/check-generated.js",
+    "sync:skill": "node scripts/sync-skill.js",
+    "sync:skill:check": "node scripts/sync-skill.js --check"
   },
   "repository": {
     "type": "git",

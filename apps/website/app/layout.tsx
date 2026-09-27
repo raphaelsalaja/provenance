@@ -5,7 +5,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
-  title: "Provenance — an influence graph for software",
+  title: "Provenance: an influence graph for software",
   description:
     "An open proposal for recording the sources that shape software and the artifacts they influence.",
   alternates: { canonical: siteUrl.href },

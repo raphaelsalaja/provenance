@@ -4,7 +4,9 @@ import { exportProvJsonLd } from "../src/export-prov-jsonld.js";
 import { loadDocument } from "../src/load-document.js";
 
 test("maps sources, targets, and qualified influences to PROV JSON-LD", async () => {
-  const document = await loadDocument("examples/minimal/provenance.yaml");
+  const document = await loadDocument(
+    "examples/minimal/.provenance/provenance.yaml",
+  );
   const output = exportProvJsonLd(document);
   const graph = output["@graph"];
 

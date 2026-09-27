@@ -1,28 +1,34 @@
 #!/usr/bin/env node
 
-import { readFileSync } from "node:fs";
+import { readFileSync, realpathSync } from "node:fs";
 import { writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
 import { writeArtifacts } from "./artifacts.js";
 import { exportProvJsonLd } from "./export-prov-jsonld.js";
 import { loadDocument } from "./load-document.js";
+import { findProjectRoot, setupProject } from "./setup.js";
 import { validateDocument } from "./validate-document.js";
 
 const VERSION = JSON.parse(
   readFileSync(new URL("../package.json", import.meta.url), "utf8"),
 ).version;
+const DEFAULT_INPUT_FILE = ".provenance/provenance.yaml";
+const DEFAULT_OUTPUT_DIRECTORY = ".provenance/output";
 
 const help = `Provenance ${VERSION}
 
 Usage:
+  provenance
+  provenance setup
   provenance check [file]
   provenance generate [file] --output-dir <directory>
   provenance export [file] --format prov-jsonld [--output <file>]
   provenance --help
   provenance --version
 
-The default input file is provenance.yaml.
+The default input file is ${DEFAULT_INPUT_FILE}.
+The default generated output directory is ${DEFAULT_OUTPUT_DIRECTORY}.
 `;
 
 function option(args, name, fallback) {
@@ -40,7 +46,11 @@ function inputFile(args) {
     if (argument.startsWith("--")) return false;
     if (index > 0 && args[index - 1].startsWith("--")) return false;
     return true;
-  }) ?? "provenance.yaml";
+  }) ?? joinProjectPath(DEFAULT_INPUT_FILE);
+}
+
+function joinProjectPath(path) {
+  return resolve(findProjectRoot(), path);
 }
 
 async function validatedDocument(file) {
@@ -57,7 +67,7 @@ async function validatedDocument(file) {
 }
 
 async function run(argv) {
-  if (!argv.length || argv.includes("--help") || argv.includes("-h")) {
+  if (argv.includes("--help") || argv.includes("-h")) {
     process.stdout.write(help);
     return;
   }
@@ -67,6 +77,16 @@ async function run(argv) {
   }
 
   const [command, ...args] = argv;
+
+  if (!command || command === "setup" || command === "init") {
+    const result = await setupProject();
+    for (const path of result.created) process.stdout.write(`Created ${path}\n`);
+    for (const path of result.updated) process.stdout.write(`Updated ${path}\n`);
+    for (const path of result.skipped) process.stdout.write(`Skipped ${path}\n`);
+    process.stdout.write(`Provenance is ready in ${result.root}.\n`);
+    return;
+  }
+
   const file = inputFile(args);
 
   if (command === "check") {
@@ -79,7 +99,7 @@ async function run(argv) {
     const document = await validatedDocument(file);
     const directory = await writeArtifacts(
       document,
-      option(args, "--output-dir", "generated"),
+      option(args, "--output-dir", joinProjectPath(DEFAULT_OUTPUT_DIRECTORY)),
     );
     process.stdout.write(`Generated provenance artifacts in ${directory}.\n`);
     return;
@@ -115,6 +135,9 @@ export async function main(argv = process.argv.slice(2)) {
   }
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+if (
+  process.argv[1] &&
+  fileURLToPath(import.meta.url) === realpathSync(process.argv[1])
+) {
   await main();
 }

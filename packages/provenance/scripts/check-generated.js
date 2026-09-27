@@ -6,8 +6,8 @@ import { loadDocument } from "../src/load-document.js";
 import { validateDocument } from "../src/validate-document.js";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const input = resolve(root, "examples/minimal/provenance.yaml");
-const output = resolve(root, "examples/minimal/generated");
+const input = resolve(root, "examples/minimal/.provenance/provenance.yaml");
+const output = resolve(root, "examples/minimal/.provenance/output");
 const document = await loadDocument(input);
 const errors = validateDocument(document);
 
