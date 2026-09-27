@@ -39,6 +39,17 @@ Sources recorded for Provenance. Inclusion records provenance; it does not grant
 - **Terms note:** Usage terms were not verified; no code, text, or assets were copied.
 - **Notes:** Reviewed as a public visual reference for an editorial single-page layout.
 
+<a id="npm-package-json-license"></a>
+
+## package.json
+
+- **Type:** documentation
+- **Publisher:** npm Docs
+- **Accessed:** 2026-09-27
+- **Source:** <https://docs.npmjs.com/files/package.json/#license>
+- **Terms:** unknown
+- **Notes:** Confirmed that packages with multiple standard licenses use an SPDX license expression.
+
 <a id="skills-sh-documentation"></a>
 
 ## Skills Documentation

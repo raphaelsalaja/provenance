@@ -1,6 +1,6 @@
 {
   "name": "provenance",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "description": "An open specification and reference implementation for recording the sources that shape software.",
   "scripts": {
