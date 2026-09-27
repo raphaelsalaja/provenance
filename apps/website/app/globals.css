@@ -138,12 +138,6 @@ section {
   scroll-margin-top: 2rem;
 }
 
-section > hr {
-  margin: 0 0 1.25rem;
-  border: 0;
-  border-top: 1px solid var(--line);
-}
-
 section h2 + p {
   margin-top: 1.25rem;
 }

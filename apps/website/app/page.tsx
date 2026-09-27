@@ -75,7 +75,6 @@ export default function Home() {
           </header>
 
           <section id="why">
-            <hr />
             <h2>Why I Made This</h2>
             <p>
               I kept running into the same problem when I built with AI. I would
@@ -122,7 +121,6 @@ export default function Home() {
           </figure>
 
           <section id="record">
-            <hr />
             <h2>One File</h2>
             <p>
               Everything lives in <code>provenance.yaml</code>: the project, the
@@ -140,7 +138,6 @@ export default function Home() {
           </section>
 
           <section id="relationships">
-            <hr />
             <h2>Six Ways a Source Can Matter</h2>
             <p>
               Not every source matters in the same way. Reading something is
@@ -159,7 +156,6 @@ export default function Home() {
           </section>
 
           <section id="standards">
-            <hr />
             <h2>Where It Fits</h2>
             <p>
               Provenance is deliberately narrow. It does not replace citation
@@ -188,7 +184,6 @@ export default function Home() {
           </section>
 
           <section id="adopt">
-            <hr />
             <h2>Try It</h2>
             <p>
               A Provenance record is plain YAML. This command checks that the file
