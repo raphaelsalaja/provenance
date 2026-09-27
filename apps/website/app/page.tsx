@@ -6,12 +6,12 @@ const version = provenancePackage.version;
 const assetBasePath = process.env.NODE_ENV === "production" ? "/provenance" : "";
 
 const relationships = [
-  ["consulted", "Considered as background without claiming adoption."],
-  ["inspired", "Affected direction without copying code, text, or assets."],
-  ["adapted", "Transformed a source pattern or material for the target."],
+  ["consulted", "Read as background, without claiming that it changed the work."],
+  ["inspired", "Changed the direction without copying code, text, or assets."],
+  ["adapted", "Started with a source pattern or material, then changed it."],
   ["copied", "Reproduced source material substantially or verbatim."],
-  ["bundled", "Distributed the source material with the project."],
-  ["verified", "Supplied evidence for a claim, behavior, or test expectation."],
+  ["bundled", "Shipped the source material with the project."],
+  ["verified", "Provided evidence for a claim, behavior, or test expectation."],
 ] as const;
 
 const example = `schemaVersion: "0.1"
@@ -64,14 +64,13 @@ export default function Home() {
               <span>Provenance</span>
             </h1>
             <p className="intro">
-              Provenance is an influence graph for software. It connects the
-              sources a project draws from to the work they shaped.
+              Provenance is a small record of what shaped a piece of software.
             </p>
 
             <p>
-              Dependencies show what a program needs to run. Citations point
-              readers to sources. Provenance fills the gap between them: what
-              changed because a source was considered.
+              Give an AI system a paper, a design study, or another codebase and
+              some part of it may survive in the finished work. Usually, the
+              reference does not. Provenance keeps the connection.
             </p>
           </header>
 
@@ -79,29 +78,27 @@ export default function Home() {
             <hr />
             <h2>Why I Made This</h2>
             <p>
-              I made Provenance because references increasingly shape software
-              through AI, while the finished repository rarely shows that
-              influence.
+              I kept running into the same problem when I built with AI. I would
+              hand it a paper, point it at an implementation, or ask it to borrow a
+              pattern. The result would change, but the repository would never show
+              why.
             </p>
             <p>
-              When I give an AI system a paper, design study, or implementation to
-              consider, parts of that source can affect the result. The final code
-              may preserve the decision while losing the path that led to it.
+              Software already has a few ways to explain where it came from.
+              Dependencies tell you what it needs. Licenses tell you what you can
+              use. Commit history tells you who changed the code. None says, “this
+              source changed this decision.”
             </p>
             <p>
-              Books and papers have citations. Software has dependencies, licenses,
-              and commit history. None says, “this source changed this decision.”
+              That gap matters more now. An AI session can pull ideas, code, and
+              language from everywhere, then blur the path back to each source.
+              Sometimes the material is copied. More often, it is adapted until the
+              origin disappears.
             </p>
             <p>
-              AI makes it easy to bring code, patterns, text, and ideas from many
-              places into one project. Some material is copied directly. Other
-              material is adapted until its origin becomes difficult to see.
-            </p>
-            <p>
-              In open source software, I think that history should remain visible.
-              Provenance is my attempt to make that practical: a small record that
-              stays with the project, names each source, and explains what it
-              shaped.
+              I think open source should make that history visible. Provenance is
+              my attempt: one small file beside the project, naming the sources and
+              what each one shaped.
             </p>
           </section>
 
@@ -119,34 +116,37 @@ export default function Home() {
               The attribution diagram could not be displayed.
             </object>
             <figcaption className="caption">
-              Citations usually travel with traditional media. AI-assisted work can
-              preserve the influence while dropping the reference. A Provenance
-              relationship makes that path visible again.
+              Traditional media carries its citations forward. AI-assisted software
+              often drops them. Provenance keeps the path attached.
             </figcaption>
           </figure>
 
           <section id="record">
             <hr />
-            <h2>One File, Explicit Connections</h2>
+            <h2>One File</h2>
             <p>
-              The project block identifies the work. Source entries describe each
-              reference. Relationship entries connect those sources to stable
-              targets. Missing authorship, dates, or usage terms remain explicitly
-              unknown.
+              Everything lives in <code>provenance.yaml</code>: the project, the
+              sources, and the relationships between those sources and the work.
+            </p>
+            <p>
+              Nothing gets guessed. If the author, date, or usage terms are unknown,
+              they stay unknown.
             </p>
             <CodeBlock label="provenance.yaml">{example}</CodeBlock>
             <p className="caption">
-              A citation records inclusion. It does not grant permission to copy,
-              adapt, or redistribute a source.
+              Recording a source is not permission to copy, adapt, or redistribute
+              it.
             </p>
           </section>
 
           <section id="relationships">
             <hr />
-            <h2>Six Relationship Types</h2>
+            <h2>Six Ways a Source Can Matter</h2>
             <p>
-              Six terms distinguish background reading, indirect influence, direct
-              reuse, and factual verification.
+              Not every source matters in the same way. Reading something is
+              different from adapting it, and adapting it is different from copying
+              it. Provenance keeps those claims separate with six relationship
+              types.
             </p>
             <dl className="relationships">
               {relationships.map(([term, description]) => (
@@ -160,47 +160,54 @@ export default function Home() {
 
           <section id="standards">
             <hr />
-            <h2>How It Fits</h2>
+            <h2>Where It Fits</h2>
             <p>
-              Provenance has one job: record how sources influenced software. It
-              sits beside formats for citation, licensing, composition, and build
-              integrity.
+              Provenance is deliberately narrow. It does not replace citation
+              files, licenses, software bills of materials, or general provenance
+              models. It records the piece they miss: how a source changed the
+              work.
             </p>
             <ul className="standards">
               <li>
                 <a href="https://citation-file-format.github.io/">CITATION.cff</a>
-                <span>How people should cite the project itself.</span>
+                <span>Tells people how to cite the project itself.</span>
               </li>
               <li>
                 <a href="https://reuse.software/spec/">REUSE</a>
-                <span>Copyright and license information for repository files.</span>
+                <span>Records copyright and license details for repository files.</span>
               </li>
               <li>
                 <a href="https://spdx.dev/use/specifications/">SPDX</a>
-                <span>Licensing and software composition.</span>
+                <span>Describes licenses and software composition.</span>
               </li>
               <li>
                 <a href="https://www.w3.org/TR/prov-overview/">W3C PROV</a>
-                <span>A general provenance model that Provenance can export to.</span>
+                <span>Provides a general model that Provenance can export to.</span>
               </li>
             </ul>
           </section>
 
           <section id="adopt">
             <hr />
-            <h2>Validate a Record</h2>
-            <p>Validate this repository from a source checkout.</p>
-            <CodeBlock label="From this repository">
+            <h2>Try It</h2>
+            <p>
+              A Provenance record is plain YAML. This command checks that the file
+              follows the schema and that its references line up.
+            </p>
+            <CodeBlock label="From This Repository">
               {"node packages/provenance/src/cli.js check provenance.yaml"}
             </CodeBlock>
-            <p>Validate another repository in GitHub Actions.</p>
+            <p>To keep it checked, add the GitHub Action to another repository.</p>
             <CodeBlock label=".github/workflows/provenance.yml">
               {actionExample}
             </CodeBlock>
           </section>
 
           <footer>
-            <p>Provenance is open source and open for discussion.</p>
+            <p>
+              Provenance is open source. If this feels useful, try it, break it, or
+              tell me what is missing.
+            </p>
             <a href={repository}>raphaelsalaja/provenance ↗</a>
           </footer>
         </article>
