@@ -4,7 +4,9 @@ import { loadDocument } from "../src/load-document.js";
 import { renderMarkdown } from "../src/render-markdown.js";
 
 test("renders each source and relationship into human-readable views", async () => {
-  const document = await loadDocument("examples/minimal/provenance.yaml");
+  const document = await loadDocument(
+    "examples/minimal/.provenance/provenance.yaml",
+  );
   const output = renderMarkdown(document);
 
   assert.match(output.references, /Example Architecture Guide/);
@@ -18,7 +20,9 @@ test("renders each source and relationship into human-readable views", async () 
 });
 
 test("sorts sources and targets deterministically", async () => {
-  const document = await loadDocument("examples/relationships/provenance.yaml");
+  const document = await loadDocument(
+    "examples/relationships/.provenance/provenance.yaml",
+  );
   const output = renderMarkdown(document);
 
   assert.ok(

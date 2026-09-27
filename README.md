@@ -3,6 +3,7 @@
 # Provenance
 
 [![CI](https://github.com/raphaelsalaja/provenance/actions/workflows/ci.yml/badge.svg)](https://github.com/raphaelsalaja/provenance/actions/workflows/ci.yml)
+[![skills.sh](https://skills.sh/b/raphaelsalaja/provenance)](https://skills.sh/raphaelsalaja/provenance/provenance)
 
 Provenance is an open format for recording the sources that shape software and
 the decisions, files, tests, or releases they influence.
@@ -15,9 +16,30 @@ code, media, models, and other source material.
 > Provenance v0.1 is a tested proposal, not an industry standard. Feedback and
 > independent implementations are welcome.
 
+## Set up Provenance
+
+Run one command from the root of your repository:
+
+```bash
+npx @web-kits/provenance
+```
+
+The setup creates `.provenance/`, installs instructions for supported coding
+agents, adds the validation workflow, and checks the result.
+
+To add only the agent skill, run:
+
+```bash
+npx skills@latest add raphaelsalaja/provenance --skill provenance
+```
+
+The skill initializes Provenance the first time that a material source affects
+the work.
+
 ## What a record contains
 
-A `provenance.yaml` file lives beside the work. It contains:
+The `.provenance/` folder lives beside the work. Its `provenance.yaml` file
+contains:
 
 - retrievable sources with known authorship, dates, revisions, and terms;
 - explicit relationships such as `consulted`, `inspired`, or `verified`;
@@ -49,40 +71,44 @@ relationships:
 
 ## Validate a record
 
-Add Provenance Check to a GitHub Actions workflow:
+Setup adds Provenance Check to a GitHub Actions workflow:
 
 ```yaml
 - uses: actions/checkout@v6
-- uses: raphaelsalaja/provenance@v0.1.2
+- uses: raphaelsalaja/provenance@v0.2.0
   with:
-    file: provenance.yaml
+    file: .provenance/provenance.yaml
 ```
 
 To run the CLI from this repository:
 
 ```bash
 pnpm install
-node packages/provenance/src/cli.js check provenance.yaml
+node packages/provenance/src/cli.js check
 ```
 
-The npm package is not published yet. The v0.1.2 CLI is available in the
-[GitHub release](https://github.com/raphaelsalaja/provenance/releases/tag/v0.1.2).
+The CLI is available as
+[`@web-kits/provenance`](https://www.npmjs.com/package/@web-kits/provenance).
+Release notes are available in the
+[v0.2.0 GitHub release](https://github.com/raphaelsalaja/provenance/releases/tag/v0.2.0).
 
 ## Generate public views
 
 Generate the source catalog, influence index, and W3C PROV JSON-LD export:
 
 ```bash
-node packages/provenance/src/cli.js generate provenance.yaml --output-dir generated
+node packages/provenance/src/cli.js generate
 ```
 
 The command writes:
 
 ```text
-generated/
-├── REFERENCES.md
-├── INFLUENCES.md
-└── provenance.prov.jsonld
+.provenance/
+├── provenance.yaml
+└── output/
+    ├── REFERENCES.md
+    ├── INFLUENCES.md
+    └── provenance.prov.jsonld
 ```
 
 ## Relationship vocabulary
@@ -116,8 +142,9 @@ Provenance has one job: record how sources influenced software. It complements:
 ```text
 apps/website/               public website
 packages/provenance/        specification, schema, CLI, tests, and examples
+skills/provenance/           public agent skill
 action.yml                  reusable Provenance Check action
-provenance.yaml             this repository's influence record
+.provenance/                source record and generated output
 ```
 
 Use Node.js 24 and pnpm 11.27.0. Run `pnpm check`, `pnpm test`, and

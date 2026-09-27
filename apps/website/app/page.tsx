@@ -1,8 +1,6 @@
-import provenancePackage from "provenance-specification/package.json";
 import { LogoMark } from "./logo-mark";
 
 const repository = "https://github.com/raphaelsalaja/provenance";
-const version = provenancePackage.version;
 const assetBasePath = process.env.NODE_ENV === "production" ? "/provenance" : "";
 
 const relationships = [
@@ -32,22 +30,6 @@ relationships:
       - docs/architecture.md
     contribution: Informed the boundary between domain logic
       and external adapters.`;
-
-const actionExample = `name: Validate provenance
-
-on:
-  pull_request:
-  push:
-    branches: [main]
-
-jobs:
-  provenance:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: raphaelsalaja/provenance@v${version}
-        with:
-          file: provenance.yaml`;
 
 function CodeBlock({ children, label }: { children: string; label: string }) {
   return (
@@ -107,8 +89,8 @@ export default function Home() {
             </p>
             <p>
               I think open source should make that history visible. Provenance is
-              my attempt: one small file beside the project, naming the sources and
-              what each one shaped.
+              my attempt: one small record inside the project, naming the sources
+              and what each one shaped.
             </p>
           </section>
 
@@ -134,16 +116,17 @@ export default function Home() {
           </figure>
 
           <section id="record">
-            <h2>One File</h2>
+            <h2>One Folder</h2>
             <p>
-              Everything lives in <code>provenance.yaml</code>: the project, the
-              sources, and the relationships between those sources and the work.
+              Provenance lives in <code>.provenance/</code>. The reviewed record is{" "}
+              <code>.provenance/provenance.yaml</code>, and generated views stay in{" "}
+              <code>.provenance/output/</code>.
             </p>
             <p>
               Nothing gets guessed. If the author, date, or usage terms are unknown,
               they stay unknown.
             </p>
-            <CodeBlock label="provenance.yaml">{example}</CodeBlock>
+            <CodeBlock label=".provenance/provenance.yaml">{example}</CodeBlock>
             <p className="caption">
               Recording a source is not permission to copy, adapt, or redistribute
               it.
@@ -198,47 +181,22 @@ export default function Home() {
 
           <section id="adopt">
             <h2>Getting Started</h2>
-            <ol className="getting-started">
-              <li>
-                <div>
-                  <strong>Create the Record</strong>
-                  <p>
-                    Add <code>provenance.yaml</code> to the root of your repository.
-                    The example above is enough to start.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <strong>Describe the Influence</strong>
-                  <p>
-                    Add each source once. Then connect it to the files, decisions,
-                    tests, or releases it shaped.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <strong>Keep It Valid</strong>
-                  <p>
-                    Update the record in the same pull request as the work. Add this
-                    workflow to validate every change.
-                  </p>
-                </div>
-              </li>
-            </ol>
-            <CodeBlock label=".github/workflows/provenance.yml">
-              {actionExample}
-            </CodeBlock>
-            <p className="source-checkout">
-              Working on Provenance itself? Run the workspace validator from this
-              source checkout.
+            <p>To set up the project and every supported agent, run:</p>
+            <CodeBlock label="Terminal">{"npx @web-kits/provenance"}</CodeBlock>
+            <p>
+              Provenance creates the record, installs instructions for Codex,
+              Cursor, Claude Code, and GitHub Copilot, adds validation, and checks
+              the result. From then on, your agent keeps the record current as it
+              works.
             </p>
-            <CodeBlock label="From This Source Checkout">
-              {
-                "pnpm --filter provenance-specification provenance check ../../provenance.yaml"
-              }
+            <p>To add only the agent skill, run:</p>
+            <CodeBlock label="Agent Skill">
+              {"npx skills@latest add raphaelsalaja/provenance --skill provenance"}
             </CodeBlock>
+            <p>
+              The skill initializes Provenance the first time that a material
+              source affects the work.
+            </p>
           </section>
 
           <footer>

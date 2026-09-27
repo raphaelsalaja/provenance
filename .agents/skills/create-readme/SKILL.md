@@ -1,6 +1,8 @@
 ---
 name: create-readme
 description: 'Create a README.md file for the project'
+metadata:
+  internal: true
 ---
 
 ## Role

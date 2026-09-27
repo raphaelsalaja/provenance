@@ -1,0 +1,378 @@
+{
+  "@context": {
+    "prov": "http://www.w3.org/ns/prov#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "provenance": "https://github.com/raphaelsalaja/provenance/blob/main/packages/provenance/spec/v0.1.md#"
+  },
+  "@graph": [
+    {
+      "@id": "project:root",
+      "@type": "prov:Entity",
+      "dcterms:title": "Provenance",
+      "prov:atLocation": "https://github.com/raphaelsalaja/provenance"
+    },
+    {
+      "@id": "source:liveline-essay",
+      "@type": "prov:Entity",
+      "dcterms:title": "Liveline",
+      "provenance:sourceType": "design",
+      "prov:atLocation": "https://benji.org/liveline"
+    },
+    {
+      "@id": "source:cursor-pstack-technical-writing",
+      "@type": "prov:Entity",
+      "dcterms:title": "Technical writing Agent Skill",
+      "provenance:sourceType": "documentation",
+      "prov:atLocation": "https://github.com/cursor/plugins/blob/main/pstack/skills/technical-writing/SKILL.md"
+    },
+    {
+      "@id": "source:github-awesome-copilot-create-readme",
+      "@type": "prov:Entity",
+      "dcterms:title": "Create README Agent Skill",
+      "provenance:sourceType": "documentation",
+      "prov:atLocation": "https://github.com/github/awesome-copilot/blob/main/skills/create-readme/SKILL.md"
+    },
+    {
+      "@id": "source:github-copilot-repository-instructions",
+      "@type": "prov:Entity",
+      "dcterms:title": "Adding repository custom instructions for GitHub Copilot in your IDE",
+      "provenance:sourceType": "documentation",
+      "prov:atLocation": "https://docs.github.com/en/copilot/how-tos/configure-custom-instructions-in-your-ide/add-repository-instructions-in-your-ide"
+    },
+    {
+      "@id": "source:skills-sh-documentation",
+      "@type": "prov:Entity",
+      "dcterms:title": "Skills Documentation",
+      "provenance:sourceType": "documentation",
+      "prov:atLocation": "https://www.skills.sh/docs"
+    },
+    {
+      "@id": "target:apps%2Fwebsite%2Fapp%2Fpage.tsx",
+      "@type": "prov:Entity",
+      "dcterms:title": "apps/website/app/page.tsx",
+      "prov:wasInfluencedBy": [
+        {
+          "@id": "source:liveline-essay"
+        },
+        {
+          "@id": "source:cursor-pstack-technical-writing"
+        },
+        {
+          "@id": "source:skills-sh-documentation"
+        }
+      ],
+      "prov:qualifiedInfluence": [
+        {
+          "@id": "influence:website-editorial-layout"
+        },
+        {
+          "@id": "influence:technical-writing-review"
+        },
+        {
+          "@id": "influence:skills-sh-distribution"
+        }
+      ]
+    },
+    {
+      "@id": "target:apps%2Fwebsite%2Fapp%2Fglobals.css",
+      "@type": "prov:Entity",
+      "dcterms:title": "apps/website/app/globals.css",
+      "prov:wasInfluencedBy": [
+        {
+          "@id": "source:liveline-essay"
+        }
+      ],
+      "prov:qualifiedInfluence": [
+        {
+          "@id": "influence:website-editorial-layout"
+        }
+      ]
+    },
+    {
+      "@id": "target:.agents%2Fskills%2Ftechnical-writing%2FSKILL.md",
+      "@type": "prov:Entity",
+      "dcterms:title": ".agents/skills/technical-writing/SKILL.md",
+      "prov:wasInfluencedBy": [
+        {
+          "@id": "source:cursor-pstack-technical-writing"
+        }
+      ],
+      "prov:qualifiedInfluence": [
+        {
+          "@id": "influence:bundled-technical-writing-skill"
+        }
+      ]
+    },
+    {
+      "@id": "target:README.md",
+      "@type": "prov:Entity",
+      "dcterms:title": "README.md",
+      "prov:wasInfluencedBy": [
+        {
+          "@id": "source:cursor-pstack-technical-writing"
+        },
+        {
+          "@id": "source:github-awesome-copilot-create-readme"
+        },
+        {
+          "@id": "source:skills-sh-documentation"
+        }
+      ],
+      "prov:qualifiedInfluence": [
+        {
+          "@id": "influence:technical-writing-review"
+        },
+        {
+          "@id": "influence:create-readme-review"
+        },
+        {
+          "@id": "influence:skills-sh-distribution"
+        }
+      ]
+    },
+    {
+      "@id": "target:apps%2Fwebsite%2Fapp%2Flayout.tsx",
+      "@type": "prov:Entity",
+      "dcterms:title": "apps/website/app/layout.tsx",
+      "prov:wasInfluencedBy": [
+        {
+          "@id": "source:cursor-pstack-technical-writing"
+        }
+      ],
+      "prov:qualifiedInfluence": [
+        {
+          "@id": "influence:technical-writing-review"
+        }
+      ]
+    },
+    {
+      "@id": "target:.agents%2Fskills%2Fcreate-readme%2FSKILL.md",
+      "@type": "prov:Entity",
+      "dcterms:title": ".agents/skills/create-readme/SKILL.md",
+      "prov:wasInfluencedBy": [
+        {
+          "@id": "source:github-awesome-copilot-create-readme"
+        }
+      ],
+      "prov:qualifiedInfluence": [
+        {
+          "@id": "influence:bundled-create-readme-skill"
+        }
+      ]
+    },
+    {
+      "@id": "target:packages%2Fprovenance%2Fsrc%2Fsetup.js",
+      "@type": "prov:Entity",
+      "dcterms:title": "packages/provenance/src/setup.js",
+      "prov:wasInfluencedBy": [
+        {
+          "@id": "source:github-copilot-repository-instructions"
+        }
+      ],
+      "prov:qualifiedInfluence": [
+        {
+          "@id": "influence:github-copilot-adapter"
+        }
+      ]
+    },
+    {
+      "@id": "target:packages%2Fprovenance%2Ftemplates%2Fadapters%2Fcopilot%2Fcopilot-instructions.md",
+      "@type": "prov:Entity",
+      "dcterms:title": "packages/provenance/templates/adapters/copilot/copilot-instructions.md",
+      "prov:wasInfluencedBy": [
+        {
+          "@id": "source:github-copilot-repository-instructions"
+        }
+      ],
+      "prov:qualifiedInfluence": [
+        {
+          "@id": "influence:github-copilot-adapter"
+        }
+      ]
+    },
+    {
+      "@id": "target:packages%2Fprovenance%2Ftest%2Fcli.test.js",
+      "@type": "prov:Entity",
+      "dcterms:title": "packages/provenance/test/cli.test.js",
+      "prov:wasInfluencedBy": [
+        {
+          "@id": "source:github-copilot-repository-instructions"
+        }
+      ],
+      "prov:qualifiedInfluence": [
+        {
+          "@id": "influence:github-copilot-adapter"
+        }
+      ]
+    },
+    {
+      "@id": "target:skills%2Fprovenance%2FSKILL.md",
+      "@type": "prov:Entity",
+      "dcterms:title": "skills/provenance/SKILL.md",
+      "prov:wasInfluencedBy": [
+        {
+          "@id": "source:skills-sh-documentation"
+        }
+      ],
+      "prov:qualifiedInfluence": [
+        {
+          "@id": "influence:skills-sh-distribution"
+        }
+      ]
+    },
+    {
+      "@id": "influence:website-editorial-layout",
+      "@type": "prov:Influence",
+      "prov:entity": {
+        "@id": "source:liveline-essay"
+      },
+      "prov:influencer": {
+        "@id": "source:liveline-essay"
+      },
+      "provenance:relationshipType": "inspired",
+      "provenance:contribution": "Inspired the 582px reading measure, body-sized headings, compact metadata, restrained code presentation, and generous vertical spacing while retaining original content and a cobalt identity.",
+      "provenance:target": [
+        {
+          "@id": "target:apps%2Fwebsite%2Fapp%2Fpage.tsx"
+        },
+        {
+          "@id": "target:apps%2Fwebsite%2Fapp%2Fglobals.css"
+        }
+      ],
+      "provenance:confidence": "verified",
+      "prov:generatedAtTime": "2026-09-24"
+    },
+    {
+      "@id": "influence:bundled-technical-writing-skill",
+      "@type": "prov:Influence",
+      "prov:entity": {
+        "@id": "source:cursor-pstack-technical-writing"
+      },
+      "prov:influencer": {
+        "@id": "source:cursor-pstack-technical-writing"
+      },
+      "provenance:relationshipType": "bundled",
+      "provenance:contribution": "Preserves the upstream technical-writing instructions as a repository-local Agent Skill.",
+      "provenance:target": [
+        {
+          "@id": "target:.agents%2Fskills%2Ftechnical-writing%2FSKILL.md"
+        }
+      ],
+      "provenance:confidence": "verified",
+      "prov:generatedAtTime": "2026-09-25"
+    },
+    {
+      "@id": "influence:technical-writing-review",
+      "@type": "prov:Influence",
+      "prov:entity": {
+        "@id": "source:cursor-pstack-technical-writing"
+      },
+      "prov:influencer": {
+        "@id": "source:cursor-pstack-technical-writing"
+      },
+      "provenance:relationshipType": "adapted",
+      "provenance:contribution": "Applied its plain-language, sentence structure, document mode, and ambiguity rules to the public explanation and setup guidance.",
+      "provenance:target": [
+        {
+          "@id": "target:README.md"
+        },
+        {
+          "@id": "target:apps%2Fwebsite%2Fapp%2Flayout.tsx"
+        },
+        {
+          "@id": "target:apps%2Fwebsite%2Fapp%2Fpage.tsx"
+        }
+      ],
+      "provenance:confidence": "verified",
+      "prov:generatedAtTime": "2026-09-25"
+    },
+    {
+      "@id": "influence:bundled-create-readme-skill",
+      "@type": "prov:Influence",
+      "prov:entity": {
+        "@id": "source:github-awesome-copilot-create-readme"
+      },
+      "prov:influencer": {
+        "@id": "source:github-awesome-copilot-create-readme"
+      },
+      "provenance:relationshipType": "bundled",
+      "provenance:contribution": "Preserves the upstream README-writing instructions as a repository-local Agent Skill.",
+      "provenance:target": [
+        {
+          "@id": "target:.agents%2Fskills%2Fcreate-readme%2FSKILL.md"
+        }
+      ],
+      "provenance:confidence": "verified",
+      "prov:generatedAtTime": "2026-09-25"
+    },
+    {
+      "@id": "influence:create-readme-review",
+      "@type": "prov:Influence",
+      "prov:entity": {
+        "@id": "source:github-awesome-copilot-create-readme"
+      },
+      "prov:influencer": {
+        "@id": "source:github-awesome-copilot-create-readme"
+      },
+      "provenance:relationshipType": "adapted",
+      "provenance:contribution": "Informed the README structure, concise open-source framing, repository map, and use of the existing project icon.",
+      "provenance:target": [
+        {
+          "@id": "target:README.md"
+        }
+      ],
+      "provenance:confidence": "verified",
+      "prov:generatedAtTime": "2026-09-25"
+    },
+    {
+      "@id": "influence:github-copilot-adapter",
+      "@type": "prov:Influence",
+      "prov:entity": {
+        "@id": "source:github-copilot-repository-instructions"
+      },
+      "prov:influencer": {
+        "@id": "source:github-copilot-repository-instructions"
+      },
+      "provenance:relationshipType": "verified",
+      "provenance:contribution": "Verified that repository-wide GitHub Copilot instructions belong at .github/copilot-instructions.md.",
+      "provenance:target": [
+        {
+          "@id": "target:packages%2Fprovenance%2Fsrc%2Fsetup.js"
+        },
+        {
+          "@id": "target:packages%2Fprovenance%2Ftemplates%2Fadapters%2Fcopilot%2Fcopilot-instructions.md"
+        },
+        {
+          "@id": "target:packages%2Fprovenance%2Ftest%2Fcli.test.js"
+        }
+      ],
+      "provenance:confidence": "verified",
+      "prov:generatedAtTime": "2026-09-27"
+    },
+    {
+      "@id": "influence:skills-sh-distribution",
+      "@type": "prov:Influence",
+      "prov:entity": {
+        "@id": "source:skills-sh-documentation"
+      },
+      "prov:influencer": {
+        "@id": "source:skills-sh-documentation"
+      },
+      "provenance:relationshipType": "verified",
+      "provenance:contribution": "Verified the public GitHub skill layout, install command, and telemetry-based skills.sh listing flow.",
+      "provenance:target": [
+        {
+          "@id": "target:skills%2Fprovenance%2FSKILL.md"
+        },
+        {
+          "@id": "target:README.md"
+        },
+        {
+          "@id": "target:apps%2Fwebsite%2Fapp%2Fpage.tsx"
+        }
+      ],
+      "provenance:confidence": "verified",
+      "prov:generatedAtTime": "2026-09-27"
+    }
+  ]
+}

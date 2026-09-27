@@ -17,9 +17,6 @@ importers:
       next:
         specifier: ^16.3.5
         version: 16.3.6(@types/node@24.13.6)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      provenance-specification:
-        specifier: workspace:*
-        version: link:../../packages/provenance
       react:
         specifier: ^19.3.0
         version: 19.3.0

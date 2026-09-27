@@ -3,7 +3,7 @@ project:
   name: Provenance
   description: An open specification for recording the sources that shape software.
   repository: https://github.com/raphaelsalaja/provenance
-  version: 0.1.2
+  version: 0.2.0
 sources:
   - id: liveline-essay
     type: design
@@ -40,6 +40,26 @@ sources:
       license: MIT
       url: https://github.com/github/awesome-copilot/blob/main/LICENSE
     notes: Installed as a repository-local skill and used to restructure the project README.
+  - id: github-copilot-repository-instructions
+    type: documentation
+    title: Adding repository custom instructions for GitHub Copilot in your IDE
+    creators:
+      - name: GitHub
+    publisher: GitHub Docs
+    url: https://docs.github.com/en/copilot/how-tos/configure-custom-instructions-in-your-ide/add-repository-instructions-in-your-ide
+    dateAccessed: 2026-09-27
+    terms:
+      status: unknown
+    notes: Confirmed the supported repository-wide instruction file for GitHub Copilot.
+  - id: skills-sh-documentation
+    type: documentation
+    title: Skills Documentation
+    publisher: Vercel
+    url: https://www.skills.sh/docs
+    dateAccessed: 2026-09-27
+    terms:
+      status: unknown
+    notes: Confirmed the GitHub repository installation and skills.sh discovery model.
 relationships:
   - id: website-editorial-layout
     source: liveline-essay
@@ -85,3 +105,23 @@ relationships:
     contribution: Informed the README structure, concise open-source framing, repository map, and use of the existing project icon.
     confidence: verified
     recordedAt: 2026-09-25
+  - id: github-copilot-adapter
+    source: github-copilot-repository-instructions
+    type: verified
+    targets:
+      - packages/provenance/src/setup.js
+      - packages/provenance/templates/adapters/copilot/copilot-instructions.md
+      - packages/provenance/test/cli.test.js
+    contribution: Verified that repository-wide GitHub Copilot instructions belong at .github/copilot-instructions.md.
+    confidence: verified
+    recordedAt: 2026-09-27
+  - id: skills-sh-distribution
+    source: skills-sh-documentation
+    type: verified
+    targets:
+      - skills/provenance/SKILL.md
+      - README.md
+      - apps/website/app/page.tsx
+    contribution: Verified the public GitHub skill layout, install command, and telemetry-based skills.sh listing flow.
+    confidence: verified
+    recordedAt: 2026-09-27
