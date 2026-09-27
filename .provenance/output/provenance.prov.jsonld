@@ -47,6 +47,13 @@
       "prov:atLocation": "https://www.skills.sh/docs"
     },
     {
+      "@id": "source:npm-package-json-license",
+      "@type": "prov:Entity",
+      "dcterms:title": "package.json",
+      "provenance:sourceType": "documentation",
+      "prov:atLocation": "https://docs.npmjs.com/files/package.json/#license"
+    },
+    {
       "@id": "target:apps%2Fwebsite%2Fapp%2Fpage.tsx",
       "@type": "prov:Entity",
       "dcterms:title": "apps/website/app/page.tsx",
@@ -221,6 +228,21 @@
       ]
     },
     {
+      "@id": "target:packages%2Fprovenance%2Fpackage.json",
+      "@type": "prov:Entity",
+      "dcterms:title": "packages/provenance/package.json",
+      "prov:wasInfluencedBy": [
+        {
+          "@id": "source:npm-package-json-license"
+        }
+      ],
+      "prov:qualifiedInfluence": [
+        {
+          "@id": "influence:npm-license-expression"
+        }
+      ]
+    },
+    {
       "@id": "influence:website-editorial-layout",
       "@type": "prov:Influence",
       "prov:entity": {
@@ -369,6 +391,25 @@
         },
         {
           "@id": "target:apps%2Fwebsite%2Fapp%2Fpage.tsx"
+        }
+      ],
+      "provenance:confidence": "verified",
+      "prov:generatedAtTime": "2026-09-27"
+    },
+    {
+      "@id": "influence:npm-license-expression",
+      "@type": "prov:Influence",
+      "prov:entity": {
+        "@id": "source:npm-package-json-license"
+      },
+      "prov:influencer": {
+        "@id": "source:npm-package-json-license"
+      },
+      "provenance:relationshipType": "verified",
+      "provenance:contribution": "Verified the SPDX expression used to describe the MIT and CC BY 4.0 portions of the published package.",
+      "provenance:target": [
+        {
+          "@id": "target:packages%2Fprovenance%2Fpackage.json"
         }
       ],
       "provenance:confidence": "verified",

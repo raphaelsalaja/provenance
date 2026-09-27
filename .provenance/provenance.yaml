@@ -3,7 +3,7 @@ project:
   name: Provenance
   description: An open specification for recording the sources that shape software.
   repository: https://github.com/raphaelsalaja/provenance
-  version: 0.2.0
+  version: 0.2.1
 sources:
   - id: liveline-essay
     type: design
@@ -60,6 +60,15 @@ sources:
     terms:
       status: unknown
     notes: Confirmed the GitHub repository installation and skills.sh discovery model.
+  - id: npm-package-json-license
+    type: documentation
+    title: package.json
+    publisher: npm Docs
+    url: https://docs.npmjs.com/files/package.json/#license
+    dateAccessed: 2026-09-27
+    terms:
+      status: unknown
+    notes: Confirmed that packages with multiple standard licenses use an SPDX license expression.
 relationships:
   - id: website-editorial-layout
     source: liveline-essay
@@ -123,5 +132,13 @@ relationships:
       - README.md
       - apps/website/app/page.tsx
     contribution: Verified the public GitHub skill layout, install command, and telemetry-based skills.sh listing flow.
+    confidence: verified
+    recordedAt: 2026-09-27
+  - id: npm-license-expression
+    source: npm-package-json-license
+    type: verified
+    targets:
+      - packages/provenance/package.json
+    contribution: Verified the SPDX expression used to describe the MIT and CC BY 4.0 portions of the published package.
     confidence: verified
     recordedAt: 2026-09-27

@@ -35,6 +35,11 @@ Source-to-target relationships recorded for Provenance.
   - relationship: inspired; confidence: verified; recorded: 2026-09-24
   - Note: The implementation uses original content, code, color, and graphics; no Liveline assets or source code were copied.
 
+## `packages/provenance/package.json`
+
+- **[package.json](./REFERENCES.md#npm-package-json-license)** — Verified the SPDX expression used to describe the MIT and CC BY 4.0 portions of the published package.
+  - relationship: verified; confidence: verified; recorded: 2026-09-27
+
 ## `packages/provenance/src/setup.js`
 
 - **[Adding repository custom instructions for GitHub Copilot in your IDE](./REFERENCES.md#github-copilot-repository-instructions)** — Verified that repository-wide GitHub Copilot instructions belong at .github/copilot-instructions.md.

@@ -8,7 +8,7 @@ shape software and the specific decisions or artifacts they influence.
 
 ## Quick start
 
-Run the CLI directly with pnpm:
+Run the CLI directly with `npx`:
 
 ```bash
 npx @web-kits/provenance
@@ -54,7 +54,7 @@ Or validate a repository in GitHub Actions:
 
 ```yaml
 - uses: actions/checkout@v6
-- uses: raphaelsalaja/provenance@v0.2.0
+- uses: raphaelsalaja/provenance@v0.2.1
   with:
     file: .provenance/provenance.yaml
 ```

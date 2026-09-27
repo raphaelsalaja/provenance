@@ -1,6 +1,6 @@
 {
   "name": "@web-kits/provenance",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A product-neutral specification and reference CLI for recording research and design provenance.",
   "type": "module",
   "bin": {
@@ -44,7 +44,7 @@
     "attribution",
     "w3c-prov"
   ],
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "(MIT AND CC-BY-4.0)",
   "engines": {
     "node": ">=24"
   },
