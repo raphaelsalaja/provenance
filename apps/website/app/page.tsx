@@ -52,7 +52,7 @@ function CodeBlock({ children, label }: { children: string; label: string }) {
 export default function Home() {
   return (
     <>
-      <a className="skip-link" href="#introduction">
+      <a className="skip-link" href="#why">
         Skip to content
       </a>
 
@@ -74,20 +74,6 @@ export default function Home() {
               changed because a source was considered.
             </p>
           </header>
-
-          <section id="introduction">
-            <hr />
-            <h2>A Record of Influence</h2>
-            <p>
-              The graph lives in a small, versioned YAML or JSON file beside the
-              work. Sources remain retrievable, and relationships describe their
-              effect on the project.
-            </p>
-            <p>
-              Provenance v0.1 is a tested proposal. It is not an industry standard.
-              Independent implementations and criticism are welcome.
-            </p>
-          </section>
 
           <section id="why">
             <hr />
