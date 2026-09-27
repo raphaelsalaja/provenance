@@ -116,7 +116,9 @@ export default function Home() {
             </object>
             <figcaption className="caption">
               Traditional media carries its citations forward. AI-assisted software
-              often drops them. Provenance keeps the path attached.
+              often drops them.
+              <br />
+              Provenance keeps the path attached.
             </figcaption>
           </figure>
 
@@ -186,11 +188,12 @@ export default function Home() {
           <section id="adopt">
             <h2>Try It</h2>
             <p>
-              A Provenance record is plain YAML. This command checks that the file
-              follows the schema and that its references line up.
+              A Provenance record is plain YAML. Run the validator from any
+              repository to check that the file follows the schema and that its
+              references line up.
             </p>
-            <CodeBlock label="From This Repository">
-              {"node packages/provenance/src/cli.js check provenance.yaml"}
+            <CodeBlock label="From Any Repository">
+              {`pnpm dlx provenance-specification@${version} check provenance.yaml`}
             </CodeBlock>
             <p>To keep it checked, add the GitHub Action to another repository.</p>
             <CodeBlock label=".github/workflows/provenance.yml">

@@ -143,19 +143,18 @@ section h2 + p {
 }
 
 .relationships {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
   margin: 1.5rem 0 0;
 }
 
 .relationships > div {
-  display: grid;
-  grid-template-columns: 7rem 1fr;
-  gap: 1rem;
-  padding: 0.55rem 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.relationships > div:first-child {
-  border-top: 1px solid var(--line);
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: linear-gradient(180deg, var(--paper), var(--code));
 }
 
 dt {
@@ -168,9 +167,24 @@ dd {
 }
 
 .relationships dt {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
   color: var(--accent);
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   font-size: 0.75rem;
+}
+
+.relationships dt::before {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: currentColor;
+  content: "";
+}
+
+.relationships dd {
+  margin-top: 0.65rem;
 }
 
 .code-block {
@@ -240,7 +254,10 @@ footer p {
     width: calc(100vw - 1rem);
   }
 
-  .relationships > div,
+  .relationships {
+    grid-template-columns: 1fr;
+  }
+
   .standards li {
     grid-template-columns: 1fr;
     gap: 0.2rem;
