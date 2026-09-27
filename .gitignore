@@ -7,3 +7,4 @@ apps/website/next-env.d.ts
 .DS_Store
 coverage/
 *.log
+.pnpm-store/

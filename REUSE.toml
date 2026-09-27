@@ -38,3 +38,15 @@ path = [
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2026 Raphael Salaja"
 SPDX-License-Identifier = "CC-BY-4.0"
+
+[[annotations]]
+path = ".agents/skills/technical-writing/SKILL.md"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Lauren Tan"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = ".agents/skills/create-readme/SKILL.md"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "GitHub, Inc."
+SPDX-License-Identifier = "MIT"

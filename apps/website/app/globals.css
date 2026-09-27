@@ -22,6 +22,7 @@ body {
   color: var(--ink);
   font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
+  font-optical-sizing: auto;
   font-size: 0.875rem;
   line-height: 1.4286;
   text-rendering: optimizeLegibility;
@@ -69,35 +70,6 @@ article {
   padding: 5.25rem 0 4rem;
 }
 
-.index {
-  position: fixed;
-  z-index: 2;
-  top: 5.25rem;
-  left: max(2rem, calc(50vw - 40rem));
-  width: 11rem;
-  color: var(--muted);
-  font-size: 0.75rem;
-  line-height: 1.5;
-}
-
-.index a {
-  text-decoration: none;
-}
-
-.index ol {
-  display: grid;
-  gap: 0.35rem;
-  margin: 4rem 0 0;
-  padding: 0;
-  color: #c5c5c3;
-  list-style: none;
-}
-
-.index ol a:hover,
-.index ol a:focus-visible {
-  color: var(--ink);
-}
-
 .hero {
   margin-bottom: 3.5rem;
 }
@@ -113,66 +85,29 @@ h2 {
   margin: 0;
   font-size: 0.875rem;
   font-weight: 620;
-  letter-spacing: -0.012em;
   line-height: 1.4286;
 }
 
-.meta {
-  margin: 0;
-  color: var(--muted);
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.brand-mark {
+  flex: none;
+  color: var(--accent);
 }
 
 .intro {
   margin: 2rem 0 0;
-  font-weight: 620;
 }
 
 p {
   margin: 1.25rem 0 0;
 }
 
-.influence {
-  margin: 2.75rem 0 3rem;
-}
-
-.influence ol {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin: 0;
-  min-height: 17rem;
-  padding: 2.5rem 0;
-  align-items: center;
-  list-style: none;
-}
-
-.influence li {
-  min-width: 0;
-}
-
-.influence span,
-.influence strong {
-  display: block;
-}
-
-.influence span {
-  margin-bottom: 0.35rem;
-  color: var(--accent);
-  font-size: 0.625rem;
-  font-weight: 650;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.influence strong {
-  overflow-wrap: anywhere;
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  font-size: 0.6875rem;
-  font-weight: 400;
-  line-height: 1.45;
-}
-
-.influence figcaption,
 .caption,
 .code-block figcaption {
   color: var(--muted);
@@ -180,26 +115,25 @@ p {
   line-height: 1.45;
 }
 
-.influence figcaption {
-  margin-top: 0.75rem;
-  text-align: center;
-}
-
 section {
   margin-top: 3.5rem;
   scroll-margin-top: 2rem;
+}
+
+section > hr {
+  margin: 0 0 1.25rem;
+  border: 0;
+  border-top: 1px solid var(--line);
 }
 
 section h2 + p {
   margin-top: 1.25rem;
 }
 
-.comparison,
 .relationships {
   margin: 1.5rem 0 0;
 }
 
-.comparison > div,
 .relationships > div {
   display: grid;
   grid-template-columns: 7rem 1fr;
@@ -208,7 +142,6 @@ section h2 + p {
   border-bottom: 1px solid var(--line);
 }
 
-.comparison > div:first-child,
 .relationships > div:first-child {
   border-top: 1px solid var(--line);
 }
@@ -255,8 +188,7 @@ pre {
   margin-top: 0.6rem;
 }
 
-.standards,
-.resources {
+.standards {
   margin: 1.5rem 0 0;
   padding: 0;
   border-top: 1px solid var(--line);
@@ -275,16 +207,6 @@ pre {
   color: #555;
 }
 
-.resources {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.resources li {
-  padding: 0.65rem 0;
-  border-bottom: 1px solid var(--line);
-}
-
 footer {
   margin-top: 4.5rem;
   padding-top: 1rem;
@@ -298,33 +220,10 @@ footer p {
 }
 
 @media (max-width: 36rem) {
-  .index {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: min(100%, var(--measure));
-    margin: 0 auto;
-    padding: 2.5rem 1.5rem 0;
-  }
-
-  .index ol {
-    display: none;
-  }
-
-  article {
-    padding-top: 2.75rem;
-  }
-
   main {
     padding-inline: 1.5rem;
   }
 
-  .influence ol {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-
-  .comparison > div,
   .relationships > div,
   .standards li {
     grid-template-columns: 1fr;
@@ -336,4 +235,5 @@ footer p {
   html {
     scroll-behavior: auto;
   }
+
 }
