@@ -119,38 +119,25 @@ export default function Home() {
             </p>
           </section>
 
-          <section id="missing-graph">
-            <hr />
-            <h2>The Missing Graph</h2>
-            <p>
-              A dependency graph records what software needs to build or run. An
-              influence graph records which source affected a decision, file, test,
-              or release.
-            </p>
-            <p>
-              A source list shows what a project consulted. A relationship records
-              how a source entered the work.
-            </p>
-            <figure className="attribution-figure">
-              <object
-                className="attribution-graphic"
-                data={`${assetBasePath}/attribution-gap.svg`}
-                type="image/svg+xml"
-                role="img"
-                aria-label="Traditional media carries a citation from a source to publication. In AI-assisted software, a Provenance record preserves the source connection while an unrecorded citation is lost."
-                width={768}
-                height={664}
-                tabIndex={-1}
-              >
-                The attribution diagram could not be displayed.
-              </object>
-              <figcaption className="caption">
-                Citations usually travel with traditional media. AI-assisted work
-                can preserve the influence while dropping the reference. A
-                Provenance relationship makes that path visible again.
-              </figcaption>
-            </figure>
-          </section>
+          <figure id="missing-graph" className="attribution-figure">
+            <object
+              className="attribution-graphic"
+              data={`${assetBasePath}/attribution-gap.svg`}
+              type="image/svg+xml"
+              role="img"
+              aria-label="Traditional media carries a citation from a source to publication. In AI-assisted software, a Provenance record preserves the source connection while an unrecorded citation is lost."
+              width={768}
+              height={664}
+              tabIndex={-1}
+            >
+              The attribution diagram could not be displayed.
+            </object>
+            <figcaption className="caption">
+              Citations usually travel with traditional media. AI-assisted work can
+              preserve the influence while dropping the reference. A Provenance
+              relationship makes that path visible again.
+            </figcaption>
+          </figure>
 
           <section id="record">
             <hr />
