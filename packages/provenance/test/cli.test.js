@@ -236,7 +236,7 @@ test("help and version are available without a document", () => {
   assert.match(cli("--help").stdout, /.provenance\/provenance.yaml/);
   assert.match(cli("--help").stdout, /.provenance\/sources/);
   assert.match(cli("--help").stdout, /.provenance\/output/);
-  assert.equal(cli("--version").stdout.trim(), "0.2.1");
+  assert.equal(cli("--version").stdout.trim(), "0.3.0");
 });
 
 test("the npm binary runs through a symlink", () => {
@@ -247,5 +247,5 @@ test("the npm binary runs through a symlink", () => {
   const result = spawnSync(binary, ["--version"], { encoding: "utf8" });
 
   assert.equal(result.status, 0, result.stderr);
-  assert.equal(result.stdout.trim(), "0.2.1");
+  assert.equal(result.stdout.trim(), "0.3.0");
 });

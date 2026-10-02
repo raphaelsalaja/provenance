@@ -89,7 +89,7 @@ Setup adds Provenance Check to a GitHub Actions workflow:
 
 ```yaml
 - uses: actions/checkout@v6
-- uses: raphaelsalaja/provenance@v0.2.1
+- uses: raphaelsalaja/provenance@v0.3.0
   with:
     file: .provenance/provenance.yaml
 ```
@@ -104,7 +104,7 @@ node packages/provenance/src/cli.js check
 The CLI is available as
 [`@web-kits/provenance`](https://www.npmjs.com/package/@web-kits/provenance).
 Release notes are available in the
-[v0.2.1 GitHub release](https://github.com/raphaelsalaja/provenance/releases/tag/v0.2.1).
+[v0.3.0 GitHub release](https://github.com/raphaelsalaja/provenance/releases/tag/v0.3.0).
 
 ## Generate public views
 

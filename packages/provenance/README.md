@@ -57,7 +57,7 @@ Or validate a repository in GitHub Actions:
 
 ```yaml
 - uses: actions/checkout@v6
-- uses: raphaelsalaja/provenance@v0.2.1
+- uses: raphaelsalaja/provenance@v0.3.0
   with:
     file: .provenance/provenance.yaml
 ```
