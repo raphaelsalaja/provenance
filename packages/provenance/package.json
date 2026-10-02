@@ -18,7 +18,7 @@
   ],
   "scripts": {
     "provenance": "node src/cli.js",
-    "check": "pnpm sync:skill:check && node --test && node src/cli.js check examples/minimal/.provenance/provenance.yaml && node src/cli.js check examples/relationships/.provenance/provenance.yaml && pnpm generate:check",
+    "check": "pnpm sync:skill:check && node --test && node src/cli.js check examples/minimal/.provenance/provenance.yaml && node src/cli.js check examples/relationships/.provenance/provenance.yaml && node src/cli.js check examples/entities/.provenance && pnpm generate:check",
     "test": "node --test",
     "generate:examples": "node scripts/generate-examples.js",
     "generate:check": "node scripts/check-generated.js",

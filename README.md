@@ -38,16 +38,30 @@ the work.
 
 ## What a record contains
 
-The `.provenance/` folder lives beside the work. Its `provenance.yaml` file
-contains:
+The `.provenance/` folder lives beside the work. Each thing or person is a
+folder under `.provenance/sources/`. A company, person, product, or standard
+has its own `source.md`: who they are, links to the pages that mattered, and
+one sentence for each influence. A product that needs its own note nests under
+its parent, such as `sources/companies/vercel/nextjs/source.md`.
 
-- retrievable sources with known authorship, dates, revisions, and terms;
-- explicit relationships such as `consulted`, `inspired`, or `verified`;
-- stable targets such as repository paths, decisions, tests, and releases;
-- a short account of what each source contributed.
+```text
+.provenance/
+├── project.yaml
+└── sources/
+    ├── companies/
+    │   └── vercel/
+    │       └── source.md
+    └── people/
+        └── ada-lovelace/
+            └── source.md
+```
 
-Unknown information stays unknown. A citation records influence but does not
-grant permission to copy, adapt, or redistribute a source.
+`project.yaml` holds the project name, repository, and version. Unknown
+information stays unknown. A citation records influence but does not grant
+permission to copy, adapt, or redistribute a source.
+
+A single `.provenance/provenance.yaml` file remains valid when `sources/` is
+absent:
 
 ```yaml
 schemaVersion: "0.1"
@@ -104,7 +118,11 @@ The command writes:
 
 ```text
 .provenance/
-├── provenance.yaml
+├── project.yaml
+├── sources/
+│   └── companies/
+│       └── vercel/
+│           └── source.md
 └── output/
     ├── REFERENCES.md
     ├── INFLUENCES.md

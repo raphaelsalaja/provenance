@@ -17,7 +17,7 @@ function termsLabel(terms) {
   return details.length ? `${terms.status} — ${details.join("; ")}` : terms.status;
 }
 
-function sourceSection(source) {
+function sourceSection(source, sourceById) {
   const lines = [
     `<a id="${source.id}"></a>`,
     "",
@@ -25,6 +25,10 @@ function sourceSection(source) {
     "",
     `- **Type:** ${source.type}`,
   ];
+  if (source.parent) {
+    const parent = sourceById.get(source.parent);
+    lines.push(`- **Part of:** ${text(parent?.title ?? source.parent)}`);
+  }
   if (source.creators?.length) {
     lines.push(
       `- **Creators:** ${source.creators.map((creator) => text(creator.name)).join(", ")}`,
@@ -36,6 +40,9 @@ function sourceSection(source) {
   }
   if (source.dateAccessed) lines.push(`- **Accessed:** ${source.dateAccessed}`);
   if (source.url) lines.push(`- **Source:** ${url(source.url)}`);
+  if (source.links?.length) {
+    lines.push(`- **Links:** ${source.links.map((link) => url(link)).join(", ")}`);
+  }
   if (source.archiveUrl) lines.push(`- **Archive:** ${url(source.archiveUrl)}`);
   if (source.revision) lines.push(`- **Revision:** ${text(source.revision)}`);
   if (source.integrity) {
@@ -87,7 +94,7 @@ export function renderMarkdown(document) {
     "",
     `Sources recorded for ${document.project.name}. Inclusion records provenance; it does not grant permission to reuse a source.`,
     "",
-    ...sources.flatMap((source) => [sourceSection(source), ""]),
+    ...sources.flatMap((source) => [sourceSection(source, sourceById), ""]),
   ].join("\n");
 
   const byTarget = new Map();

@@ -25,7 +25,10 @@ npx skills@latest add raphaelsalaja/provenance --skill provenance
 The skill runs setup when it first encounters a material source in an
 uninitialized repository.
 
-A minimal `.provenance/provenance.yaml` looks like this:
+Record each thing or person as a folder under `.provenance/sources/`. A
+`source.md` file names the entity, lists the pages that mattered, and gives
+one sentence for each influence. A single `.provenance/provenance.yaml` file
+remains valid when `sources/` is absent:
 
 ```yaml
 schemaVersion: "0.1"

@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-import { readFileSync, realpathSync } from "node:fs";
+import { existsSync, readFileSync, realpathSync } from "node:fs";
 import { writeFile } from "node:fs/promises";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { writeArtifacts } from "./artifacts.js";
 import { exportProvJsonLd } from "./export-prov-jsonld.js";
@@ -14,6 +14,7 @@ const VERSION = JSON.parse(
   readFileSync(new URL("../package.json", import.meta.url), "utf8"),
 ).version;
 const DEFAULT_INPUT_FILE = ".provenance/provenance.yaml";
+const DEFAULT_SOURCES_DIRECTORY = ".provenance/sources";
 const DEFAULT_OUTPUT_DIRECTORY = ".provenance/output";
 
 const help = `Provenance ${VERSION}
@@ -27,7 +28,8 @@ Usage:
   provenance --help
   provenance --version
 
-The default input file is ${DEFAULT_INPUT_FILE}.
+The default input is ${DEFAULT_SOURCES_DIRECTORY} when that directory exists,
+otherwise ${DEFAULT_INPUT_FILE}.
 The default generated output directory is ${DEFAULT_OUTPUT_DIRECTORY}.
 `;
 
@@ -42,11 +44,19 @@ function option(args, name, fallback) {
 }
 
 function inputFile(args) {
-  return args.find((argument, index) => {
-    if (argument.startsWith("--")) return false;
-    if (index > 0 && args[index - 1].startsWith("--")) return false;
-    return true;
-  }) ?? joinProjectPath(DEFAULT_INPUT_FILE);
+  return (
+    args.find((argument, index) => {
+      if (argument.startsWith("--")) return false;
+      if (index > 0 && args[index - 1].startsWith("--")) return false;
+      return true;
+    }) ?? defaultInput()
+  );
+}
+
+function defaultInput() {
+  const provenance = joinProjectPath(".provenance");
+  if (existsSync(join(provenance, "sources"))) return provenance;
+  return join(provenance, "provenance.yaml");
 }
 
 function joinProjectPath(path) {

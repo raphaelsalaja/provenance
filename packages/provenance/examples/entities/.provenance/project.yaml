@@ -1,0 +1,4 @@
+schemaVersion: "0.1"
+name: Example Project
+repository: https://example.com/example-project
+version: 1.0.0

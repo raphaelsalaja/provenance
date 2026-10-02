@@ -27,6 +27,55 @@ function cli(...args) {
   return cliFrom(packageDirectory, ...args);
 }
 
+test("check accepts an entity folder", () => {
+  const result = cli("check", "examples/entities/.provenance");
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /is valid/);
+});
+
+test("generate prefers an entity folder when sources exists", () => {
+  const directory = mkdtempSync(join(tmpdir(), "provenance-cli-"));
+  const provenanceDirectory = join(directory, ".provenance");
+  mkdirSync(join(provenanceDirectory, "sources/companies/vercel"), {
+    recursive: true,
+  });
+  writeFileSync(
+    join(provenanceDirectory, "project.yaml"),
+    'schemaVersion: "0.1"\nname: Folder Project\n',
+  );
+  writeFileSync(
+    join(provenanceDirectory, "sources/companies/vercel/source.md"),
+    `---
+id: vercel
+url: https://vercel.com
+terms: unknown
+influenced:
+  - id: website-framework
+    type: consulted
+    targets:
+      - apps/website
+    contribution: Next.js documentation informed the site structure.
+---
+
+# Vercel
+
+Vercel publishes the hosting platform used for the site.
+`,
+  );
+  writeFileSync(
+    join(provenanceDirectory, "provenance.yaml"),
+    'schemaVersion: "0.1"\nproject:\n  name: Yaml Project\nsources: []\nrelationships: []\n',
+  );
+
+  const result = cliFrom(directory, "generate");
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(
+    readFileSync(join(provenanceDirectory, "output/REFERENCES.md"), "utf8"),
+    /Folder Project/,
+  );
+});
+
 test("check exits successfully for a valid document", () => {
   const result = cli("check", "examples/minimal/.provenance/provenance.yaml");
   assert.equal(result.status, 0, result.stderr);
@@ -185,6 +234,7 @@ test("export writes PROV JSON-LD to a requested file", () => {
 test("help and version are available without a document", () => {
   assert.match(cli("--help").stdout, /provenance check/);
   assert.match(cli("--help").stdout, /.provenance\/provenance.yaml/);
+  assert.match(cli("--help").stdout, /.provenance\/sources/);
   assert.match(cli("--help").stdout, /.provenance\/output/);
   assert.equal(cli("--version").stdout.trim(), "0.2.1");
 });

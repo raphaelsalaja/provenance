@@ -81,6 +81,11 @@ export function validateDocument(document) {
     if (!referencedSources.has(source.id)) {
       errors.push(`/sources/${source.id} is not used by a relationship`);
     }
+    if (source.parent && !sourceIds.has(source.parent)) {
+      errors.push(
+        `/sources/${source.id} references missing parent ${source.parent}`,
+      );
+    }
   }
 
   return errors;

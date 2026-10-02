@@ -19,6 +19,17 @@ test("renders each source and relationship into human-readable views", async () 
   );
 });
 
+test("renders an entity folder as a source index", async () => {
+  const document = await loadDocument("examples/entities/.provenance");
+  const output = renderMarkdown(document);
+
+  assert.match(output.references, /Vercel/);
+  assert.match(output.references, /https:\/\/nextjs\.org\/docs/);
+  assert.match(output.references, /Part of:\*\* Vercel/);
+  assert.match(output.influences, /apps\/website/);
+  assert.match(output.influences, /informed the site structure/);
+});
+
 test("sorts sources and targets deterministically", async () => {
   const document = await loadDocument(
     "examples/relationships/.provenance/provenance.yaml",
