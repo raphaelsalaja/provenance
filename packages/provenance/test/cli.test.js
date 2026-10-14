@@ -44,9 +44,9 @@ test("generate prefers an entity folder when sources exists", () => {
     'schemaVersion: "0.1"\nname: Folder Project\n',
   );
   writeFileSync(
-    join(provenanceDirectory, "sources/companies/vercel/source.md"),
-    `---
-id: vercel
+    join(provenanceDirectory, "sources/companies/vercel/source.yaml"),
+    `id: vercel
+title: Vercel
 url: https://vercel.com
 terms: unknown
 influenced:
@@ -55,11 +55,6 @@ influenced:
     targets:
       - apps/website
     contribution: Next.js documentation informed the site structure.
----
-
-# Vercel
-
-Vercel publishes the hosting platform used for the site.
 `,
   );
   writeFileSync(
@@ -236,7 +231,7 @@ test("help and version are available without a document", () => {
   assert.match(cli("--help").stdout, /.provenance\/provenance.yaml/);
   assert.match(cli("--help").stdout, /.provenance\/sources/);
   assert.match(cli("--help").stdout, /.provenance\/output/);
-  assert.equal(cli("--version").stdout.trim(), "0.3.0");
+  assert.equal(cli("--version").stdout.trim(), "1.0.0");
 });
 
 test("the npm binary runs through a symlink", () => {
@@ -247,5 +242,5 @@ test("the npm binary runs through a symlink", () => {
   const result = spawnSync(binary, ["--version"], { encoding: "utf8" });
 
   assert.equal(result.status, 0, result.stderr);
-  assert.equal(result.stdout.trim(), "0.3.0");
+  assert.equal(result.stdout.trim(), "1.0.0");
 });

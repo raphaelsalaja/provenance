@@ -1,5 +1,5 @@
----
 id: vercel
+title: Vercel
 url: https://vercel.com
 terms: unknown
 links:
@@ -12,8 +12,3 @@ influenced:
       - apps/website
     contribution: Next.js documentation informed the site structure.
     evidence: docs/provenance/migration/legacy-influences.md
----
-
-# Vercel
-
-Vercel publishes Next.js, Turborepo, and the hosting platform used for the site.

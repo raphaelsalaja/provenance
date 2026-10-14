@@ -17,6 +17,7 @@ const SOURCE_FIELDS = [
   "archiveUrl",
   "revision",
   "integrity",
+  "notes",
   "extensions",
 ];
 
@@ -106,37 +107,39 @@ async function collectEntity(directory, type, parentId, entities) {
     throw new Error(`${directory} must be an entity directory`);
   }
 
-  const sourcePath = join(directory, "source.md");
-  const parsed = await parseSourceFile(sourcePath);
+  const sourcePath = join(directory, "source.yaml");
+  const data = await parseSourceFile(sourcePath);
   const id = basename(directory);
-  if (parsed.data.id !== id) {
+  if (data.id !== id) {
     throw new Error(`${sourcePath} id must be ${id}`);
+  }
+  if (typeof data.title !== "string" || data.title.trim() === "") {
+    throw new Error(`${sourcePath} must include a title`);
   }
 
   const source = {
     id,
     type,
-    title: parsed.title,
-    terms: normalizeTerms(parsed.data.terms),
+    title: data.title.trim(),
+    terms: normalizeTerms(data.terms),
   };
-  if (parsed.data.url !== undefined) source.url = parsed.data.url;
+  if (data.url !== undefined) source.url = data.url;
   if (parentId) source.parent = parentId;
   for (const field of SOURCE_FIELDS) {
-    if (parsed.data[field] !== undefined) source[field] = parsed.data[field];
+    if (data[field] !== undefined) source[field] = data[field];
   }
-  if (parsed.data.links?.length) source.links = parsed.data.links;
-  if (parsed.notes) source.notes = parsed.notes;
+  if (data.links?.length) source.links = data.links;
 
   entities.push({
     source,
-    relationships: (parsed.data.influenced ?? []).map((entry) =>
+    relationships: (data.influenced ?? []).map((entry) =>
       relationshipFromInfluence(entry, id),
     ),
   });
 
   const children = await readdir(directory, { withFileTypes: true });
   for (const child of children.sort(byName)) {
-    if (child.name === "source.md") continue;
+    if (child.name === "source.yaml") continue;
     if (!child.isDirectory()) {
       throw new Error(
         `${join(directory, child.name)} is not part of an entity folder`,
@@ -155,34 +158,19 @@ async function parseSourceFile(path) {
     throw new Error(`Could not read ${path}: ${reason}`);
   }
 
-  const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
-  if (!match) {
-    throw new Error(`${path} must begin with YAML frontmatter`);
-  }
-
   let data;
   try {
-    data = parseYaml(match[1]);
+    data = parseYaml(text);
   } catch (error) {
     const reason = error instanceof Error ? error.message : String(error);
     throw new Error(`Could not parse ${path}: ${reason}`);
   }
 
   if (!data || typeof data !== "object" || Array.isArray(data)) {
-    throw new Error(`${path} frontmatter must be a mapping`);
+    throw new Error(`${path} must be a mapping`);
   }
 
-  const lines = match[2].trim().split(/\r?\n/);
-  const heading = /^#\s+(.+)$/.exec(lines[0] ?? "");
-  if (!heading) {
-    throw new Error(`${path} must begin its body with a heading`);
-  }
-
-  return {
-    data,
-    title: heading[1].trim(),
-    notes: lines.slice(1).join("\n").trim(),
-  };
+  return data;
 }
 
 function normalizeTerms(terms) {

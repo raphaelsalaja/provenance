@@ -1,5 +1,5 @@
----
 id: nextjs
+title: Next.js
 url: https://nextjs.org
 terms: unknown
 links:
@@ -10,8 +10,3 @@ influenced:
     targets:
       - apps/website
     contribution: The Next.js documentation informed how the site is routed.
----
-
-# Next.js
-
-Next.js is the React framework published by Vercel.

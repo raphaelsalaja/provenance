@@ -2,7 +2,7 @@
 
 A source is the thing or the person that influenced the work: a company, a
 person, a product, or a standard. Pages from that entity are links on its
-`source.md`, not separate sources.
+`source.yaml`, not separate sources.
 
 ```text
 .provenance/
@@ -10,21 +10,21 @@ person, a product, or a standard. Pages from that entity are links on its
   sources/
     companies/
       vercel/
-        source.md
+        source.yaml
         nextjs/
-          source.md
+          source.yaml
     people/
       ada-lovelace/
-        source.md
+        source.yaml
 ```
 
 `project.yaml` names the project. Each entity folder is named with its id and
-contains `source.md`. A product that needs its own note nests under its parent.
-The nested file is still one entity.
+contains `source.yaml`. A product that needs its own record nests under its
+parent. The nested file is still one entity.
 
-```markdown
----
+```yaml
 id: vercel
+title: Vercel
 url: https://vercel.com
 terms: unknown
 links:
@@ -35,11 +35,6 @@ influenced:
     targets:
       - apps/website
     contribution: Next.js documentation informed the site structure.
----
-
-# Vercel
-
-Vercel publishes Next.js and the hosting platform used for the site.
 ```
 
 ## Relationship Types

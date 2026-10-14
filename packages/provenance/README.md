@@ -26,7 +26,7 @@ The skill runs setup when it first encounters a material source in an
 uninitialized repository.
 
 Record each thing or person as a folder under `.provenance/sources/`. A
-`source.md` file names the entity, lists the pages that mattered, and gives
+`source.yaml` file names the entity, lists the pages that mattered, and gives
 one sentence for each influence. A single `.provenance/provenance.yaml` file
 remains valid when `sources/` is absent:
 
@@ -57,7 +57,7 @@ Or validate a repository in GitHub Actions:
 
 ```yaml
 - uses: actions/checkout@v6
-- uses: raphaelsalaja/provenance@v0.3.0
+- uses: raphaelsalaja/provenance@v1.0.0
   with:
     file: .provenance/provenance.yaml
 ```

@@ -40,9 +40,9 @@ the work.
 
 The `.provenance/` folder lives beside the work. Each thing or person is a
 folder under `.provenance/sources/`. A company, person, product, or standard
-has its own `source.md`: who they are, links to the pages that mattered, and
-one sentence for each influence. A product that needs its own note nests under
-its parent, such as `sources/companies/vercel/nextjs/source.md`.
+has its own `source.yaml`: the name, links to the pages that mattered, and
+one sentence for each influence. A product that needs its own record nests under
+its parent, such as `sources/companies/vercel/nextjs/source.yaml`.
 
 ```text
 .provenance/
@@ -50,10 +50,10 @@ its parent, such as `sources/companies/vercel/nextjs/source.md`.
 └── sources/
     ├── companies/
     │   └── vercel/
-    │       └── source.md
+    │       └── source.yaml
     └── people/
         └── ada-lovelace/
-            └── source.md
+            └── source.yaml
 ```
 
 `project.yaml` holds the project name, repository, and version. Unknown
@@ -89,7 +89,7 @@ Setup adds Provenance Check to a GitHub Actions workflow:
 
 ```yaml
 - uses: actions/checkout@v6
-- uses: raphaelsalaja/provenance@v0.3.0
+- uses: raphaelsalaja/provenance@v1.0.0
   with:
     file: .provenance/provenance.yaml
 ```
@@ -104,7 +104,7 @@ node packages/provenance/src/cli.js check
 The CLI is available as
 [`@web-kits/provenance`](https://www.npmjs.com/package/@web-kits/provenance).
 Release notes are available in the
-[v0.3.0 GitHub release](https://github.com/raphaelsalaja/provenance/releases/tag/v0.3.0).
+[v1.0.0 GitHub release](https://github.com/raphaelsalaja/provenance/releases/tag/v1.0.0).
 
 ## Generate public views
 
@@ -122,7 +122,7 @@ The command writes:
 ├── sources/
 │   └── companies/
 │       └── vercel/
-│           └── source.md
+│           └── source.yaml
 └── output/
     ├── REFERENCES.md
     ├── INFLUENCES.md

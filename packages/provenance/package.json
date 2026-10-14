@@ -1,6 +1,6 @@
 {
   "name": "@web-kits/provenance",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "A product-neutral specification and reference CLI for recording research and design provenance.",
   "type": "module",
   "bin": {

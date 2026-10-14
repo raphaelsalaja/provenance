@@ -23,7 +23,8 @@ test("loads a company and its nested product", async () => {
   ]);
   assert.equal(nextjs.type, "product");
   assert.equal(nextjs.parent, "vercel");
-  assert.match(vercel.notes, /hosting platform/);
+  assert.equal(nextjs.title, "Next.js");
+  assert.equal(vercel.notes, undefined);
 
   const influence = document.relationships.find(
     (relationship) => relationship.id === "website-framework",
@@ -60,12 +61,12 @@ test("rejects a source id that does not match its folder", async () => {
     'schemaVersion: "0.1"\nname: Example\n',
   );
   writeFileSync(
-    join(entity, "source.md"),
-    "---\nid: other\nurl: https://vercel.com\nterms: unknown\ninfluenced: []\n---\n\n# Vercel\n",
+    join(entity, "source.yaml"),
+    "id: other\ntitle: Vercel\nurl: https://vercel.com\nterms: unknown\ninfluenced: []\n",
   );
 
   await assert.rejects(
     loadDocument(directory),
-    /source\.md id must be vercel/,
+    /source\.yaml id must be vercel/,
   );
 });
